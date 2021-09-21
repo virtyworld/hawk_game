@@ -6,8 +6,6 @@ using Random = UnityEngine.Random;
 
 public class Shoot : MonoBehaviour
 {
-    [SerializeField] private Bullet[] bulletPrefabs;
-    [SerializeField] private StreamBullet[] streamBullets;
     [SerializeField] private float fireRate;
 
     private Weapon weapon;
@@ -47,34 +45,19 @@ public class Shoot : MonoBehaviour
         if (GetRandomRangeWeapons() > 50)
         {
             //simple bullets
-            //need to check array Length
-            if (GetRandomRangeBullets() > 50 && bulletPrefabs.Length > 1)
-            {
-                StartCoroutine(ShootBullet());
-            }
-            else
-            {
-                StartCoroutine(ShootBullet());
-            }
+            StartCoroutine(ShootBullet());
         }
         else
         {
             //stream bullets
-            if (GetRandomRangeBullets() > 50 && streamBullets.Length > 1)
-            {
-                StartCoroutine(ShootStream());
-            }
-            else
-            {
-                StartCoroutine(ShootStream());
-            }
+            StartCoroutine(ShootStream());
         }
     }
 
     IEnumerator ShootStream()
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.up);
-       
+
         StreamBullet sb = Instantiate(weapon.StreamBullet, hitInfo.point, Quaternion.identity);
 
         yield return new WaitForSeconds(1);
