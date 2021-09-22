@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float speed = 20f;
+
+    protected Rigidbody rb;
+
+    private void Update()
     {
-        
+        BulletMove();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected void BulletMove()
     {
-        
+        rb.velocity = transform.up * speed;
     }
+   
 }
