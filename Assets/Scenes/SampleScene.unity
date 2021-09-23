@@ -153,10 +153,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 3312754533542020424, guid: ad7e4065beea3b247b735282c6e6ef08, type: 3}
-  characterMovement: {fileID: 4511475569974252199, guid: ad7e4065beea3b247b735282c6e6ef08, type: 3}
+  movement: {fileID: 4511475569974252199, guid: ad7e4065beea3b247b735282c6e6ef08, type: 3}
   moveSpeed: 3
-  bulletRed: {fileID: 2909390465101848791, guid: 07e60692d2bacad468ca1e4a0ea04d5c, type: 3}
-  bulletBlue: {fileID: 5737049273347897482, guid: 16fb8edda7c7eeb4486ca95feccf994b, type: 3}
+  bulletsPrefab:
+  - {fileID: 5737049273347897482, guid: 16fb8edda7c7eeb4486ca95feccf994b, type: 3}
+  - {fileID: 2909390465101848791, guid: 07e60692d2bacad468ca1e4a0ea04d5c, type: 3}
+  - {fileID: 2909390465101848791, guid: 07e60692d2bacad468ca1e4a0ea04d5c, type: 3}
+  fireRate: 1
 --- !u!4 &321068241
 Transform:
   m_ObjectHideFlags: 0

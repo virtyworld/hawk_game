@@ -53,7 +53,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4253917737766323072, guid: 62cbda1dce6d37f4a9b51c2df58d2bc9, type: 3}
       propertyPath: m_Name
-      value: Bullet
+      value: RedBullet
       objectReference: {fileID: 0}
+    - target: {fileID: 7838932134670380239, guid: 62cbda1dce6d37f4a9b51c2df58d2bc9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5e318d440aedd8044ab94b710f557c97, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62cbda1dce6d37f4a9b51c2df58d2bc9, type: 3}
