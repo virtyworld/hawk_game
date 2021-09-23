@@ -3,34 +3,38 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class GameManager : MonoBehaviour
+public class PlayerScript : MonoBehaviour
 {
-    private static GameManager instance;
-    public static GameManager Instance { get { return instance; } }
-    
+    private static PlayerScript instance;
+
     [Header("Character setup")]
     [SerializeField] private GameObject character;
-    [SerializeField] private Movement movement;
-    [SerializeField] public float moveSpeed;
-    private bool IsGameStart;
-    private GameObject gameCharacter;
-    private Vector3 p_Velocity ;
-    
-    [Header("Bullet setup")]
+    [SerializeField] private float moveSpeed;
+   
+    [Header("Bullet setup")] 
     [SerializeField] private GameObject[] bulletsPrefab;
     [SerializeField] private float fireRate;
+    [SerializeField] private float bulletSpeed;
+    
+    private bool IsGameStart;
+    private GameObject gameCharacter;
     private float currentTime;
-    private bool shoot;
+    private bool IsShoot;
 
-    public float MoveSpeed => moveSpeed;
-    public GameObject Character => character;
+    public static PlayerScript Instance
+    {
+        get { return instance; }
+    }
+    public float BulletSpeed => bulletSpeed;
 
     private void Awake()
     {
         if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
-        } else {
+        }
+        else
+        {
             instance = this;
             DontDestroyOnLoad(this);
         }
@@ -39,56 +43,56 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        GetInput();
+        StartStopGame();
     }
 
     private void FixedUpdate()
     {
         Shoot();
-        move();
+        Move();
     }
-   
-    
-    private void GetInput()
+
+
+    private void StartStopGame()
     {
-       
         if (Input.GetKey(KeyCode.I))
         {
             StartGame();
         }
+
         if (Input.GetKey(KeyCode.O))
         {
             StopGame();
         }
-        
     }
 
     private Vector3 GetMoveInput()
     {
-        Vector3 p_Velocity = new Vector3();
+        Vector3 characterVelocity = new Vector3();
 
         if (Input.GetKey(KeyCode.W))
         {
-            p_Velocity += new Vector3(0, 1, 0);
+            characterVelocity += new Vector3(0, 1, 0);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            p_Velocity += new Vector3(0, -1, 0);
+            characterVelocity += new Vector3(0, -1, 0);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            p_Velocity += new Vector3(-1, 0, 0);
+            characterVelocity += new Vector3(-1, 0, 0);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            p_Velocity += new Vector3(1, 0, 0);
+            characterVelocity += new Vector3(1, 0, 0);
         }
 
-        return p_Velocity;
+        return characterVelocity;
     }
+
     private void StartGame()
     {
         if (!IsGameStart)
@@ -97,7 +101,7 @@ public class GameManager : MonoBehaviour
             IsGameStart = true;
         }
     }
-    
+
     private void StopGame()
     {
         if (IsGameStart && gameCharacter)
@@ -107,14 +111,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void move()
+    private void Move()
     {
         if (IsGameStart && gameCharacter)
         {
-            GetMoveInput();
-            gameCharacter.transform.Translate(p_Velocity * moveSpeed * Time.deltaTime);
+            Vector3 p = GetMoveInput();
+            gameCharacter.transform.Translate(p * moveSpeed * Time.deltaTime);
         }
-        
     }
 
     private void Shoot()
@@ -123,11 +126,11 @@ public class GameManager : MonoBehaviour
         {
             if (currentTime == 0)
             {
-                shoot = true;
+                IsShoot = true;
                 StartCoroutine(Shooting());
             }
 
-            if (shoot && currentTime < fireRate)
+            if (IsShoot && currentTime < fireRate)
             {
                 currentTime += 1 * Time.deltaTime;
             }
@@ -135,20 +138,19 @@ public class GameManager : MonoBehaviour
             if (currentTime >= fireRate)
             {
                 currentTime = 0;
-                shoot = false;
+                IsShoot = false;
             }
-            
         }
-
     }
-   
-   
+
+
     IEnumerator Shooting()
     {
-       Transform go =  Instantiate(bulletsPrefab[Random.Range(0,bulletsPrefab.Length)].transform, new Vector3(gameCharacter.transform.position.x,gameCharacter.transform.position.y + 1),
+        Transform go = Instantiate(bulletsPrefab[Random.Range(0, bulletsPrefab.Length)].transform,
+            new Vector3(gameCharacter.transform.position.x, gameCharacter.transform.position.y + 1),
             Quaternion.identity);
 
-       yield return new WaitForSeconds(fireRate);
+        yield return new WaitForSeconds(fireRate);
         Destroy(go.gameObject);
         yield break;
     }

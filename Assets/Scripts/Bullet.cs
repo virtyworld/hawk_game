@@ -1,12 +1,17 @@
+using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float speed = 20f;
-
+    [SerializeField] private float speed;
     [SerializeField] private Rigidbody rb;
 
-    private void Update()
+    private void Start()
+    {
+        speed = PlayerScript.Instance.BulletSpeed;
+    }
+
+    private void FixedUpdate()
     {
         BulletMove();
     }
@@ -15,5 +20,4 @@ public class Bullet : MonoBehaviour
     {
         rb.velocity = transform.up * speed;
     }
-   
 }
