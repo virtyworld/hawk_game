@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 321068241}
   - component: {fileID: 321068240}
   m_Layer: 0
-  m_Name: PlayerScript
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,9 +157,9 @@ MonoBehaviour:
   bulletsPrefab:
   - {fileID: 5737049273347897482, guid: 16fb8edda7c7eeb4486ca95feccf994b, type: 3}
   - {fileID: 2909390465101848791, guid: 07e60692d2bacad468ca1e4a0ea04d5c, type: 3}
-  - {fileID: 2909390465101848791, guid: 07e60692d2bacad468ca1e4a0ea04d5c, type: 3}
   fireRate: 1
   bulletSpeed: 3
+  bulletLifeTime: 2
 --- !u!4 &321068241
 Transform:
   m_ObjectHideFlags: 0

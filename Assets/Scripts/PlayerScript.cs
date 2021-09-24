@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -15,16 +14,14 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private GameObject[] bulletsPrefab;
     [SerializeField] private float fireRate;
     [SerializeField] private float bulletSpeed;
+    [SerializeField] private float bulletLifeTime;
     
     private bool IsGameStart;
     private GameObject gameCharacter;
     private float currentTime;
     private bool IsShoot;
 
-    public static PlayerScript Instance
-    {
-        get { return instance; }
-    }
+    public static PlayerScript Instance => instance;
     public float BulletSpeed => bulletSpeed;
 
     private void Awake()
@@ -40,18 +37,12 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-
-    private void Update()
-    {
-        StartStopGame();
-    }
-
     private void FixedUpdate()
     {
+        StartStopGame();
         Shoot();
         Move();
     }
-
 
     private void StartStopGame()
     {
@@ -143,14 +134,11 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-
     IEnumerator Shooting()
     {
-        Transform go = Instantiate(bulletsPrefab[Random.Range(0, bulletsPrefab.Length)].transform,
-            new Vector3(gameCharacter.transform.position.x, gameCharacter.transform.position.y + 1),
-            Quaternion.identity);
-
-        yield return new WaitForSeconds(fireRate);
+        Vector3 position = gameCharacter.transform.position;
+        Transform go = Instantiate(bulletsPrefab[Random.Range(0, bulletsPrefab.Length)].transform, new Vector3(position.x, position.y + 1), Quaternion.identity);
+        yield return new WaitForSeconds(bulletLifeTime);
         Destroy(go.gameObject);
         yield break;
     }
