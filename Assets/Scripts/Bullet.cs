@@ -4,12 +4,10 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody rb;
-
-    private void Start()
-    {
-        speed = PlayerScript.Instance.BulletSpeed;
-    }
-
+    [SerializeField] private float fireRate;
+    [SerializeField] private float bulletSpeed;
+    [SerializeField] private float bulletLifeTime;
+  
     private void FixedUpdate()
     {
         BulletMove();

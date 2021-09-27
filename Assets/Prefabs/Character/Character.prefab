@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 7129749284560719438}
   - component: {fileID: 8754184065892096594}
   - component: {fileID: 828192653086601024}
+  - component: {fileID: 4936707387852323188}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -159,6 +160,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3296931, y: 1.0204294, z: 1.0102845}
   m_Center: {x: 0.15314555, y: -0.0037813485, z: 0.00085896254}
+--- !u!114 &4936707387852323188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3312754533542020424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3cae1b470432e44d98f5f0c588151aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 3312754533542020424}
+  moveSpeed: 2
+  bulletsPrefab:
+  - {fileID: 5737049273347897482, guid: 16fb8edda7c7eeb4486ca95feccf994b, type: 3}
+  - {fileID: 2909390465101848791, guid: 07e60692d2bacad468ca1e4a0ea04d5c, type: 3}
+  fireRate: 2
+  bulletSpeed: 3
+  bulletLifeTime: 2
 --- !u!1 &6087441777651552235
 GameObject:
   m_ObjectHideFlags: 0
