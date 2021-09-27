@@ -51,6 +51,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1694538152472687664, guid: 62cbda1dce6d37f4a9b51c2df58d2bc9, type: 3}
+      propertyPath: bulletLifeTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4253917737766323072, guid: 62cbda1dce6d37f4a9b51c2df58d2bc9, type: 3}
       propertyPath: m_Name
       value: RedBullet

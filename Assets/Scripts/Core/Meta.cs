@@ -9,6 +9,7 @@ namespace Core
 
         private Character playerScript;
         private bool IsStartGame;
+        
         private void FixedUpdate()
         {
             if (!IsStartGame && Input.GetKey(KeyCode.I))

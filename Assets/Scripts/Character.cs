@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -61,7 +60,7 @@ public class Character : MonoBehaviour
         if (currentTime == 0)
         {
             IsShoot = true;
-            StartCoroutine(Shooting());
+            Shooting();
         }
 
         if (IsShoot && currentTime < fireRate)
@@ -76,11 +75,9 @@ public class Character : MonoBehaviour
         }
     }
 
-    IEnumerator Shooting()
+    private void Shooting()
     {
         Vector3 position = gameObject.transform.position;
-        Transform go = Instantiate(bullet[Random.Range(0, bullet.Length)].transform, new Vector3(position.x, position.y + 1), Quaternion.identity);
-        yield return new WaitForSeconds(2);
-        Destroy(go.gameObject);
+        Instantiate(bullet[Random.Range(0, bullet.Length)].transform, new Vector3(position.x, position.y + 1), Quaternion.identity);
     }
 }
