@@ -8,7 +8,7 @@ public class Character : MonoBehaviour
     [SerializeField] private float fireRate;
    
     private float currentTime;
-    private bool IsShoot;
+    private bool isShoot;
     private Bullet[] bullet;
   
     public void Setup(Bullet[] bullet)
@@ -59,11 +59,11 @@ public class Character : MonoBehaviour
     {
         if (currentTime == 0)
         {
-            IsShoot = true;
+            isShoot = true;
             Shooting();
         }
 
-        if (IsShoot && currentTime < fireRate)
+        if (isShoot && currentTime < fireRate)
         {
             currentTime += 1 * Time.deltaTime;
         }
@@ -71,7 +71,7 @@ public class Character : MonoBehaviour
         if (currentTime >= fireRate)
         {
             currentTime = 0;
-            IsShoot = false;
+            isShoot = false;
         }
     }
 
