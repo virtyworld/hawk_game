@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed;
-    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Rigidbody rigidbody;
     [SerializeField] private float bulletLifeTime;
   
     private void FixedUpdate()
@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
 
     private void BulletMove()
     {
-        rb.velocity = transform.up * speed;
+        rigidbody.velocity = transform.up * speed;
     }
     
     IEnumerator Destroy()
