@@ -8,20 +8,20 @@ namespace Core
         [SerializeField] private Bullet[] bulletPrefabs;
 
         private Character playerScript;
-        private bool IsStartGame;
+        private bool isStartGame;
         
         private void FixedUpdate()
         {
-            if (!IsStartGame && Input.GetKey(KeyCode.I))
+            if (!isStartGame && Input.GetKey(KeyCode.I))
             {
                 StartGame();
-                IsStartGame = true;
+                isStartGame = true;
             }
 
-            if (IsStartGame && Input.GetKey(KeyCode.O))
+            if (isStartGame && Input.GetKey(KeyCode.O))
             {
                 FinishGame();
-                IsStartGame = false;
+                isStartGame = false;
             }
         }
 
