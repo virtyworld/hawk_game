@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,49 +11,51 @@ public class Character : MonoBehaviour
     private float currentTime;
     private bool isShoot;
     private Bullet[] bullet;
+    private Vector3 target;
   
     public void Setup(Bullet[] bullet)
     {
         this.bullet = bullet;
     }
-    
+
+    private void Start()
+    {
+        target = transform.position;
+    }
+
     private void FixedUpdate()
     {
         Shoot();
         Move();
     }
   
-    private Vector3 GetMoveInput()
+    private void GetMoveInput()
     {
-        Vector3 characterVelocity = new Vector3();
-
         if (Input.GetKey(KeyCode.W))
         {
-            characterVelocity += new Vector3(0, 1, 0);
+            target += new Vector3(0, 1, 0);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            characterVelocity += new Vector3(0, -1, 0);
+            target += new Vector3(0, -1, 0);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            characterVelocity += new Vector3(-1, 0, 0);
+            target += new Vector3(-1, 0, 0);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            characterVelocity += new Vector3(1, 0, 0);
+            target += new Vector3(1, 0, 0);
         }
-
-        return characterVelocity;
     }
 
     private void Move()
     {
-        Vector3 p = GetMoveInput();
-        gameObject.transform.Translate(p * moveSpeed * Time.deltaTime);
+        GetMoveInput();
+        transform.position = Vector3.Lerp (transform.position,  target,  Time.deltaTime * moveSpeed);
     }
 
     private void Shoot()

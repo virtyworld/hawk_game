@@ -127,4 +127,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  rb: {fileID: 8152497985342118759}
+  rigidbody: {fileID: 8152497985342118759}
+  bulletLifeTime: 0
