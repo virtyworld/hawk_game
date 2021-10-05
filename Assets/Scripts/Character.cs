@@ -7,7 +7,7 @@ public class Character : MonoBehaviour
     [Header("Character setup")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float fireRate;
-   
+
     private float currentTime;
     private bool isShoot;
     private Bullet[] bullet;
