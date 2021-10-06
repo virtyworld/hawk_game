@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +12,6 @@ namespace Core
       
         private Character playerScript;
         private bool isStartGame;
-
 
         private void Start()
         {

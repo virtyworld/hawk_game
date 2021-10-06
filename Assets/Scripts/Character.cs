@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,19 +7,15 @@ public class Character : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float fireRate;
 
+    private enum Tags{Character,Player}
     private float currentTime;
     private bool isShoot;
+    private bool isHoldMouse0;
     private Bullet[] bullet;
-    private Vector3 target;
-  
+
     public void Setup(Bullet[] bullet)
     {
         this.bullet = bullet;
-    }
-
-    private void Start()
-    {
-        target = transform.position;
     }
 
     private void FixedUpdate()
@@ -29,33 +24,32 @@ public class Character : MonoBehaviour
         Move();
     }
   
-    private void GetMoveInput()
-    {
-        if (Input.GetKey(KeyCode.W))
-        {
-            target += new Vector3(0, 1, 0);
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            target += new Vector3(0, -1, 0);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            target += new Vector3(-1, 0, 0);
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            target += new Vector3(1, 0, 0);
-        }
-    }
-
+    //TODO: what is the best solutions: hit.transform.CompareTag(Tags.Character.ToString()) ||  Enum.TryParse || hit.transform.tag == Tags.Character.ToString()
     private void Move()
     {
-        GetMoveInput();
-        transform.position = Vector3.Lerp (transform.position,  target,  Time.deltaTime * moveSpeed);
+        if(Input.GetMouseButton(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  
+            RaycastHit hit;
+            
+            if (Physics.Raycast(ray, out hit)) {
+                if (hit.transform.tag == Tags.Character.ToString())
+                {
+                    isHoldMouse0 = true;
+                    Vector3 target = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
+                    transform.position = Vector3.Lerp (transform.position, target ,  Time.deltaTime * moveSpeed);
+                }  
+            } 
+            else if (isHoldMouse0)
+            {
+                Vector3 target = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
+                transform.position = Vector3.Lerp (transform.position, target ,  Time.deltaTime * moveSpeed);
+            }
+        }
+        else
+        {
+            isHoldMouse0 = false;            
+        }
     }
 
     private void Shoot()
