@@ -1,28 +1,51 @@
+using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Core
 {
     public class Meta : MonoBehaviour
     {
+        private static Meta instance;
+        
         [SerializeField] private Character playerScriptPrefab;
         [SerializeField] private Bullet[] bulletPrefabs;
-        [SerializeField] private GameObject menu;
-        [SerializeField] private Button playButton;
-      
+        [Header("Menu settings")]
+        [SerializeField] private GameObject menuDirectory;
+        [SerializeField] private ScreenController startMenuScreenPrefab;
+        [SerializeField] private ScreenController gameScreenPrefab;
+        [SerializeField] private ScreenController finalMenuScreenPrefab;
+
         private Character playerScript;
+        private ScreenController startMenuScreen;
+        private ScreenController gameMenuScreen;
+        private ScreenController finalMenuScreen;
         private bool isStartGame;
+        public Action GameStartAction;
+        public Action GameFinishAction;
+
+        public static Meta Instance => instance;
+
+        private void Awake()
+        {
+            if (instance != null && instance != this)
+            {
+                Destroy(this.gameObject);
+            } else {
+                instance = this;
+            }
+        }
 
         private void Start()
         {
-            playButton.onClick.AddListener(TaskOnClick);
+            GameStartAction += StartGame;
+            GameFinishAction += FinishGame;
         }
 
         private void FixedUpdate()
         {
             if (!isStartGame && Input.GetKey(KeyCode.I))
             {
-                StartGame();
+                OpenMainMenu();
             }
 
             if (isStartGame && Input.GetKey(KeyCode.O))
@@ -35,10 +58,19 @@ namespace Core
         {
             if (!isStartGame)
             {
+                if (finalMenuScreen)
+                {
+                    Destroy(finalMenuScreen.gameObject); 
+                }
+
+                if (startMenuScreen)
+                {
+                    Destroy(startMenuScreen.gameObject);
+                }
                 playerScript = Instantiate(playerScriptPrefab);
                 playerScript.Setup(bulletPrefabs);
                 isStartGame = true;
-                OpenCloseMenu(true);
+                gameMenuScreen = Instantiate(gameScreenPrefab, menuDirectory.transform);
             }
         }
         
@@ -48,25 +80,19 @@ namespace Core
             {
                 Destroy(playerScript.gameObject);
                 isStartGame = false;
-                OpenCloseMenu(false);
+                Destroy(gameMenuScreen.gameObject);
+                finalMenuScreen = Instantiate(finalMenuScreenPrefab,menuDirectory.transform);
+            }
+        }
+
+        private void OpenMainMenu()
+        {
+            if (!startMenuScreen)
+            {
+                startMenuScreen = Instantiate(startMenuScreenPrefab, menuDirectory.transform);
             }
         }
         
-        private void OpenCloseMenu(bool isOpen)
-        {
-            if (isOpen)
-            {
-               menu.SetActive(false);
-            }
-            else
-            {
-                menu.SetActive(true);
-            }
-        }
-        
-        private void TaskOnClick()
-        {
-            StartGame();
-        }
+
     }
 }

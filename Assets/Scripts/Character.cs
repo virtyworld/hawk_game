@@ -6,12 +6,12 @@ public class Character : MonoBehaviour
     [Header("Character setup")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float fireRate;
-
-    private enum Tags{Character,Player}
+   
     private float currentTime;
     private bool isShoot;
-    private bool isHoldMouse0;
     private Bullet[] bullet;
+    private Vector3 oldCharacterPos;
+    private Vector3 oldCursorPos;
 
     public void Setup(Bullet[] bullet)
     {
@@ -24,34 +24,27 @@ public class Character : MonoBehaviour
         Move();
     }
   
-    //TODO: what is the best solutions: hit.transform.CompareTag(Tags.Character.ToString()) ||  Enum.TryParse || hit.transform.tag == Tags.Character.ToString()
     private void Move()
     {
-        if(Input.GetMouseButton(0))
+        Vector3 cursor = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
+        
+        if (Input.GetMouseButton(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  
-            RaycastHit hit;
-            
-            if (Physics.Raycast(ray, out hit)) {
-                if (hit.transform.tag == Tags.Character.ToString())
-                {
-                    isHoldMouse0 = true;
-                    Vector3 target = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
-                    transform.position = Vector3.Lerp (transform.position, target ,  Time.deltaTime * moveSpeed);
-                }  
-            } 
-            else if (isHoldMouse0)
+            if (oldCursorPos != cursor)
             {
-                Vector3 target = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
-                transform.position = Vector3.Lerp (transform.position, target ,  Time.deltaTime * moveSpeed);
+                transform.position = Vector3.Lerp(transform.position,  transform.position + (cursor - oldCursorPos)*4, Time.deltaTime * moveSpeed);
+                oldCharacterPos = transform.position + (cursor - oldCursorPos) * 4;
+                oldCursorPos = cursor; 
             }
         }
         else
         {
-            isHoldMouse0 = false;            
+            transform.position = Vector3.Lerp(transform.position,  oldCharacterPos, Time.deltaTime * moveSpeed);
         }
+        
+        oldCursorPos = cursor;
     }
-
+  
     private void Shoot()
     {
         if (currentTime == 0)
