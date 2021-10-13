@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4292064703198371916}
   - component: {fileID: 8610178739038956720}
   - component: {fileID: 8174410630366538378}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 828192653086601024}
   - component: {fileID: 4936707387852323188}
   - component: {fileID: 2021414617046915002}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Character
   m_TagString: Character
   m_Icon: {fileID: 0}
@@ -175,7 +175,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 9
   fireRate: 2
-  isMoving: 0
 --- !u!96 &2021414617046915002
 TrailRenderer:
   serializedVersion: 2
@@ -295,7 +294,7 @@ GameObject:
   - component: {fileID: 3635547553241434902}
   - component: {fileID: 3395899636041970684}
   - component: {fileID: 172539972523196681}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +389,7 @@ GameObject:
   - component: {fileID: 6131089840127208189}
   - component: {fileID: 1389421337171782104}
   - component: {fileID: 4852013409680401712}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +481,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1113914526887842074}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

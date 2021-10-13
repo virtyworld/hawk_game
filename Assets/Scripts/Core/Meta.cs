@@ -1,4 +1,5 @@
 using System;
+using Screen;
 using UnityEngine;
 
 namespace Core
@@ -9,8 +10,8 @@ namespace Core
         
         [SerializeField] private Character playerScriptPrefab;
         [SerializeField] private Bullet[] bulletPrefabs;
-        [Header("Menu settings")]
         [SerializeField] private GameObject menuDirectory;
+        [SerializeField] private GameObject gameDirectory;
         [SerializeField] private ScreenController startMenuScreenPrefab;
         [SerializeField] private ScreenController gameScreenPrefab;
         [SerializeField] private ScreenController finalMenuScreenPrefab;
@@ -22,6 +23,7 @@ namespace Core
         private bool isStartGame;
         public Action GameStartAction;
         public Action GameFinishAction;
+        public Action QuitGameAction;
 
         public static Meta Instance => instance;
 
@@ -39,18 +41,19 @@ namespace Core
         {
             GameStartAction += StartGame;
             GameFinishAction += FinishGame;
+            QuitGameAction += QuitGame;
         }
 
         private void FixedUpdate()
         {
-            if (!isStartGame && Input.GetKey(KeyCode.I))
+            if (Input.GetKey(KeyCode.I))
             {
-                OpenMainMenu();
+                StartMenu();
             }
 
-            if (isStartGame && Input.GetKey(KeyCode.O))
+            if (Input.GetKey(KeyCode.O))
             {
-                FinishGame();
+                QuitGame();
             }
         }
 
@@ -58,19 +61,14 @@ namespace Core
         {
             if (!isStartGame)
             {
-                if (finalMenuScreen)
-                {
-                    Destroy(finalMenuScreen.gameObject); 
-                }
-
-                if (startMenuScreen)
-                {
-                    Destroy(startMenuScreen.gameObject);
-                }
-                playerScript = Instantiate(playerScriptPrefab);
+                if (finalMenuScreen) Destroy(finalMenuScreen.gameObject);
+                if (startMenuScreen) Destroy(startMenuScreen.gameObject);
+                
+                playerScript = Instantiate(playerScriptPrefab,gameDirectory.transform);
                 playerScript.Setup(bulletPrefabs);
                 isStartGame = true;
-                gameMenuScreen = Instantiate(gameScreenPrefab, menuDirectory.transform);
+                gameMenuScreen = Instantiate(gameScreenPrefab, gameDirectory.transform);
+                
             }
         }
         
@@ -78,21 +76,30 @@ namespace Core
         {
             if (isStartGame)
             {
-                Destroy(playerScript.gameObject);
                 isStartGame = false;
-                Destroy(gameMenuScreen.gameObject);
+                if (playerScript) Destroy(playerScript.gameObject);
+                if (gameMenuScreen) Destroy(gameMenuScreen.gameObject);
                 finalMenuScreen = Instantiate(finalMenuScreenPrefab,menuDirectory.transform);
+               
             }
         }
 
-        private void OpenMainMenu()
+        private void StartMenu()
         {
             if (!startMenuScreen)
             {
+                isStartGame = false;
                 startMenuScreen = Instantiate(startMenuScreenPrefab, menuDirectory.transform);
             }
         }
-        
 
+        private void QuitGame()
+        {
+            isStartGame = false;
+            if (gameMenuScreen) Destroy(gameMenuScreen.gameObject);
+            if (playerScript) Destroy(playerScript.gameObject);
+            if (startMenuScreen) Destroy(startMenuScreen.gameObject);
+            if (finalMenuScreen) Destroy(finalMenuScreen.gameObject);
+        }
     }
 }
