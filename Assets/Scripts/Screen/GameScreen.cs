@@ -6,22 +6,19 @@ using UnityEngine.UI;
 public class GameScreen : ScreenController
 {
     [SerializeField] private Button finishButton;
-    [SerializeField] private GameObject gameCamera;
-    [SerializeField] private GameObject mainCamera;
+
+    private GameObject gameCamera;
     protected override void Start()
     {
         base.Start();
         
         if (finishButton)
         {
-            finishButton.onClick.AddListener(StartScreen);
+            finishButton.onClick.AddListener(FinishButton);
         }
-        // gameCamera.SetActive(true);
-        // Camera.main.enabled = false;
-        
     }
 
-    protected override void StartScreen()
+    private void FinishButton()
     {
         Meta.Instance.GameFinishAction.Invoke();
     }

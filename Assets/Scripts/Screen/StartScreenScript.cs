@@ -14,11 +14,11 @@ public class StartScreenScript : ScreenController
         
         if (startButton)
         {
-            startButton.onClick.AddListener(StartScreen);
+            startButton.onClick.AddListener(StartButton);
         }
     }
 
-    protected override void StartScreen()
+    private  void StartButton()
     {
         Meta.Instance.GameStartAction.Invoke();
     }

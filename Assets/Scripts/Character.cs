@@ -26,9 +26,8 @@ public class Character : MonoBehaviour
   
     private void Move()
     {
-      
         Vector3 cursor = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
-        
+      
         if (Input.GetMouseButton(0))
         {
             if (oldCursorPos != cursor)

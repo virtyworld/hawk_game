@@ -12,9 +12,7 @@ namespace Screen
         {
             quitButton.onClick.AddListener(QuitScreen);
         }
-
-        protected abstract void StartScreen();
-
+     
         protected virtual void QuitScreen()
         {
             Meta.Instance.QuitGameAction.Invoke();

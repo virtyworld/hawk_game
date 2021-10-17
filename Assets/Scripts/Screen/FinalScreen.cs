@@ -13,11 +13,11 @@ public class FinalScreen : ScreenController
         
         if (restartButton)
         {
-            restartButton.onClick.AddListener(StartScreen);
+            restartButton.onClick.AddListener(RestartButton);
         }
     }
 
-    protected override void StartScreen()
+    private void RestartButton()
     {
         Meta.Instance.GameStartAction.Invoke();
     }

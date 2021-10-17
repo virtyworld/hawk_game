@@ -167,13 +167,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScriptPrefab: {fileID: 4936707387852323188, guid: ad7e4065beea3b247b735282c6e6ef08, type: 3}
+  gameLevelPrefab: {fileID: 1312569294653462976, guid: 452a599d61c57f24bb1f17bae8141a13, type: 3}
   bulletPrefabs:
   - {fileID: 7138998392144842554, guid: 16fb8edda7c7eeb4486ca95feccf994b, type: 3}
   - {fileID: 354937656187901799, guid: 07e60692d2bacad468ca1e4a0ea04d5c, type: 3}
   menuDirectory: {fileID: 664920320}
   gameDirectory: {fileID: 959893555}
   startMenuScreenPrefab: {fileID: 2301179999439058387, guid: 69eec9856f20ab049ae0272a4b02c830, type: 3}
-  gameScreenPrefab: {fileID: 1695844906799719091, guid: 452a599d61c57f24bb1f17bae8141a13, type: 3}
+  gameScreenPrefab: {fileID: 7789458558912784323, guid: 783174c576603b3499dab929b1594663, type: 3}
   finalMenuScreenPrefab: {fileID: 6299040818203137957, guid: 9a76e271d679b9042a499d7975eaebb9, type: 3}
 --- !u!1 &578441011
 GameObject:
@@ -251,7 +252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 664920321}
   m_Layer: 5
-  m_Name: MenuScreen
+  m_Name: MenuDirectory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -379,7 +380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 959893556}
   m_Layer: 7
-  m_Name: GameScreen
+  m_Name: GameDirectory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -396,13 +397,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2047956797}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &963194225
 GameObject:
@@ -461,7 +462,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -579,7 +580,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 664920321}
-  - {fileID: 959893556}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

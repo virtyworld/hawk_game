@@ -9,6 +9,7 @@ namespace Core
         private static Meta instance;
         
         [SerializeField] private Character playerScriptPrefab;
+        [SerializeField] private GameObject gameLevelPrefab;
         [SerializeField] private Bullet[] bulletPrefabs;
         [SerializeField] private GameObject menuDirectory;
         [SerializeField] private GameObject gameDirectory;
@@ -17,6 +18,7 @@ namespace Core
         [SerializeField] private ScreenController finalMenuScreenPrefab;
 
         private Character playerScript;
+        private GameObject gameLevel;
         private ScreenController startMenuScreen;
         private ScreenController gameMenuScreen;
         private ScreenController finalMenuScreen;
@@ -63,12 +65,11 @@ namespace Core
             {
                 if (finalMenuScreen) Destroy(finalMenuScreen.gameObject);
                 if (startMenuScreen) Destroy(startMenuScreen.gameObject);
-                
                 playerScript = Instantiate(playerScriptPrefab,gameDirectory.transform);
                 playerScript.Setup(bulletPrefabs);
+                gameLevel = Instantiate(gameLevelPrefab,gameDirectory.transform);
+                gameMenuScreen = Instantiate(gameScreenPrefab, menuDirectory.transform);
                 isStartGame = true;
-                gameMenuScreen = Instantiate(gameScreenPrefab, gameDirectory.transform);
-                
             }
         }
         
@@ -76,11 +77,11 @@ namespace Core
         {
             if (isStartGame)
             {
-                isStartGame = false;
                 if (playerScript) Destroy(playerScript.gameObject);
+                if (gameLevel) Destroy(gameLevel.gameObject);
                 if (gameMenuScreen) Destroy(gameMenuScreen.gameObject);
                 finalMenuScreen = Instantiate(finalMenuScreenPrefab,menuDirectory.transform);
-               
+                isStartGame = false;
             }
         }
 
@@ -98,6 +99,7 @@ namespace Core
             isStartGame = false;
             if (gameMenuScreen) Destroy(gameMenuScreen.gameObject);
             if (playerScript) Destroy(playerScript.gameObject);
+            if (gameLevel) Destroy(gameLevel.gameObject);
             if (startMenuScreen) Destroy(startMenuScreen.gameObject);
             if (finalMenuScreen) Destroy(finalMenuScreen.gameObject);
         }
