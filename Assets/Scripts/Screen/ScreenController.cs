@@ -1,50 +1,52 @@
+using System;
 using UnityEngine;
 
 namespace Screen
 {
-    public enum ScreenName { MenuScreen, FinalScreen, GameScreen }
     public  class ScreenController:BaseScreen
     {
-        public static ShowScreenDelegate ShowGameScreen;
-        
-        [SerializeField] private GameObject[] screenPrefabs;
+        [SerializeField] private BaseScreen[] screenPrefabs;
         [SerializeField] private GameObject menuDirectory;
-        public delegate BaseScreen ShowScreenDelegate(ScreenName screenName);
-
-        public  ShowScreenDelegate ShowScreen;
-        private bool isGameScreen;
        
-        private void Start()
+        public GameScreen ShowGameScreen()
         {
-            ShowScreen += GetScreen;
-            ShowGameScreen += GetScreen;
+            return GetScreen<GameScreen>();
         }
-
-        private BaseScreen GetScreen<T> (T screen)
+        public MenuScreen ShowMainScreen()
         {
-            BaseScreen bs;
+            return GetScreen<MenuScreen>();
+        }
+        public FinalScreen ShowFinalScreen()
+        {
+            return GetScreen<FinalScreen>();
+        }
+        
             
+        private T GetScreen<T> () where T:BaseScreen
+        {
             foreach (Transform child in menuDirectory.transform) {
                 GameObject.Destroy(child.gameObject);
             }
             
-            if (screen.Equals(ScreenName.FinalScreen))
+            Type type = typeof(T);
+            BaseScreen bs;
+            
+            if (type == typeof(GameScreen))
             {
-                GameObject gm = Instantiate(screenPrefabs[2],menuDirectory.transform);
-                bs = gm.GetComponent<FinalScreen>();
+                bs = Instantiate(screenPrefabs[1],menuDirectory.transform);
             }
-            else if (screen.Equals(ScreenName.GameScreen))
+            else if (type == typeof(FinalScreen))
             {
-                GameObject gm = Instantiate(screenPrefabs[1], menuDirectory.transform);
-                bs = gm.GetComponent<GameScreen>();
+                bs = Instantiate(screenPrefabs[2],menuDirectory.transform);
             }
             else
             {
-                GameObject gm =  Instantiate(screenPrefabs[0],menuDirectory.transform);
-                bs = gm.GetComponent<MenuScreen>();
+                bs = Instantiate(screenPrefabs[0],menuDirectory.transform);
             }
+            
+           
 
-            return bs;
+            return  (T) bs;
         }
     }
 }

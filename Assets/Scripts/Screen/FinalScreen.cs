@@ -1,4 +1,4 @@
-using Screen;
+using Core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +13,6 @@ public class FinalScreen : BaseScreen
 
     private void GoToMainMenuButton()
     { 
-        ScreenController.ShowGameScreen(ScreenName.MenuScreen);
+        Meta.OnMainScreenAction?.Invoke();
     }
 }

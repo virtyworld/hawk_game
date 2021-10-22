@@ -1,3 +1,4 @@
+using System;
 using Screen;
 using UnityEngine;
 
@@ -5,8 +6,9 @@ namespace Core
 {
     public class Meta : MonoBehaviour
     {
-        public static OnStartGameRequestDelegate OnStartGameRequest;
-        public static OnFinishGameRequestDelegate OnFinishGameRequest;
+        public static Action OnGameScreenAction;
+        public static Action OnFinishScreenAction;
+        public static Action OnMainScreenAction;
         
         [SerializeField] private Character playerScriptPrefab;
         [SerializeField] private Bullet[] bulletPrefabs;
@@ -14,20 +16,20 @@ namespace Core
         [SerializeField] private GameObject gameLevelPrefab;
         [SerializeField] private ScreenController screenController;
         
-
         private Character playerScript;
         private GameObject gameLevel;
         private bool isStartGame;
-        private BaseScreen mainScreen, gameScreen, finalScreen;
-
-        public delegate void OnStartGameRequestDelegate();
-        public delegate void OnFinishGameRequestDelegate();
-
+        private MenuScreen menuScreen;
+        private GameScreen gameScreen;
+        private FinalScreen finalScreen;
+        
+       
         private void Start()
         {
-            OnStartGameRequest += StartGame;
-            OnFinishGameRequest += FinishGame;
-            mainScreen = screenController.ShowScreen(ScreenName.MenuScreen);
+            OnGameScreenAction += StartGame;
+            OnFinishScreenAction += FinishGame;
+            OnMainScreenAction += MainMenu;
+            MainMenu();
         }
 
 
@@ -39,8 +41,8 @@ namespace Core
                 playerScript = Instantiate(playerScriptPrefab,gameDirectory.transform);
                 playerScript.Setup(bulletPrefabs);
                 gameLevel = Instantiate(gameLevelPrefab, gameDirectory.transform);
-                if (mainScreen) Destroy(mainScreen.gameObject);
-                gameScreen = screenController.ShowScreen(ScreenName.GameScreen);
+                gameScreen = screenController.ShowGameScreen();
+                if (menuScreen) Destroy(menuScreen.gameObject);
             }
         }
         
@@ -49,10 +51,16 @@ namespace Core
             if (isStartGame)
             {
                 isStartGame = false;
-                finalScreen = screenController.ShowScreen(ScreenName.FinalScreen);
+                finalScreen = screenController.ShowFinalScreen();
                 if (playerScript) Destroy(playerScript.gameObject);
                 if (gameLevel) Destroy(gameLevel.gameObject);
             }
+        }
+
+        private void MainMenu()
+        {
+            menuScreen = screenController.ShowMainScreen();
+            if (finalScreen) Destroy(finalScreen.gameObject);
         }
     }
 }

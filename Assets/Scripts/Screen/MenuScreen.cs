@@ -13,6 +13,6 @@ public class MenuScreen : BaseScreen
 
     private void StartClickButton()
     {
-        Meta.OnStartGameRequest();
+        Meta.OnGameScreenAction?.Invoke();
     }
 }

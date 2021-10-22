@@ -172,7 +172,7 @@ MonoBehaviour:
   - {fileID: 354937656187901799, guid: 07e60692d2bacad468ca1e4a0ea04d5c, type: 3}
   gameDirectory: {fileID: 959893555}
   gameLevelPrefab: {fileID: 1312569294653462976, guid: 452a599d61c57f24bb1f17bae8141a13, type: 3}
-  screenControllerPrefab: {fileID: 2047956798}
+  screenController: {fileID: 2047956798}
 --- !u!1 &578441011
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenPrefabs:
-  - {fileID: 4024395651474234469, guid: 69eec9856f20ab049ae0272a4b02c830, type: 3}
-  - {fileID: 7351222338810219401, guid: 783174c576603b3499dab929b1594663, type: 3}
-  - {fileID: 4024395651474234469, guid: 9a76e271d679b9042a499d7975eaebb9, type: 3}
+  - {fileID: 2301179999439058387, guid: 69eec9856f20ab049ae0272a4b02c830, type: 3}
+  - {fileID: 7789458558912784323, guid: 783174c576603b3499dab929b1594663, type: 3}
+  - {fileID: 6299040818203137957, guid: 9a76e271d679b9042a499d7975eaebb9, type: 3}
   menuDirectory: {fileID: 664920320}

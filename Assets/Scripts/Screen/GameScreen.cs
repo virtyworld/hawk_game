@@ -6,6 +6,10 @@ public class GameScreen : BaseScreen
 {
     [SerializeField] private Button finishButton;
 
+    public void Setup()
+    {
+        
+    }
     private void Start()
     {
         finishButton.onClick.AddListener(FinishClickButton);
@@ -13,6 +17,6 @@ public class GameScreen : BaseScreen
 
     private void FinishClickButton()
     {
-        Meta.OnFinishGameRequest();
+        Meta.OnFinishScreenAction?.Invoke();
     }
 }
