@@ -1,24 +1,18 @@
-using Core;
 using Screen;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FinalScreen : ScreenController
+public class FinalScreen : BaseScreen
 {
-    [SerializeField] private Button restartButton;
+    [SerializeField] private Button goToMainMenuButton;
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
-        
-        if (restartButton)
-        {
-            restartButton.onClick.AddListener(RestartButton);
-        }
+        goToMainMenuButton.onClick.AddListener(GoToMainMenuButton);
     }
 
-    private void RestartButton()
-    {
-        Meta.Instance.GameStartAction.Invoke();
+    private void GoToMainMenuButton()
+    { 
+        ScreenController.ShowGameScreen(ScreenName.MenuScreen);
     }
 }

@@ -1,25 +1,18 @@
 using Core;
-using Screen;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameScreen : ScreenController
+public class GameScreen : BaseScreen
 {
     [SerializeField] private Button finishButton;
 
-    private GameObject gameCamera;
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
-        
-        if (finishButton)
-        {
-            finishButton.onClick.AddListener(FinishButton);
-        }
+        finishButton.onClick.AddListener(FinishClickButton);
     }
 
-    private void FinishButton()
+    private void FinishClickButton()
     {
-        Meta.Instance.GameFinishAction.Invoke();
+        Meta.OnFinishGameRequest();
     }
 }
