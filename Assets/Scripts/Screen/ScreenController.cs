@@ -43,8 +43,6 @@ namespace Screen
             {
                 bs = Instantiate(screenPrefabs[0],menuDirectory.transform);
             }
-            
-           
 
             return  (T) bs;
         }

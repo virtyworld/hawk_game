@@ -1,11 +1,17 @@
-using Core;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MenuScreen : BaseScreen
 {
     [SerializeField] private Button startButton;
-  
+    
+    private Action startButtonAction;
+
+    public void Setup(Action action)
+    {
+        this.startButtonAction = action;
+    }
     private void Start()
     {
         startButton.onClick.AddListener(StartClickButton);
@@ -13,6 +19,6 @@ public class MenuScreen : BaseScreen
 
     private void StartClickButton()
     {
-        Meta.OnGameScreenAction?.Invoke();
+        startButtonAction?.Invoke();
     }
 }

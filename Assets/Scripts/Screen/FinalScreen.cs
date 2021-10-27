@@ -1,4 +1,4 @@
-using Core;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +6,13 @@ public class FinalScreen : BaseScreen
 {
     [SerializeField] private Button goToMainMenuButton;
 
+    private Action goToMainMenuButtonAction;
+    
+    public void Setup(Action action)
+    {
+        goToMainMenuButtonAction = action;
+    }
+    
     private void Start()
     {
         goToMainMenuButton.onClick.AddListener(GoToMainMenuButton);
@@ -13,6 +20,6 @@ public class FinalScreen : BaseScreen
 
     private void GoToMainMenuButton()
     { 
-        Meta.OnMainScreenAction?.Invoke();
+        goToMainMenuButtonAction?.Invoke();
     }
 }

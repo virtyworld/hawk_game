@@ -6,9 +6,9 @@ namespace Core
 {
     public class Meta : MonoBehaviour
     {
-        public static Action OnGameScreenAction;
-        public static Action OnFinishScreenAction;
-        public static Action OnMainScreenAction;
+        private static Action OnGameScreenAction;
+        private static Action OnFinishScreenAction;
+        private static Action OnMainScreenAction;
         
         [SerializeField] private Character playerScriptPrefab;
         [SerializeField] private Bullet[] bulletPrefabs;
@@ -23,7 +23,6 @@ namespace Core
         private GameScreen gameScreen;
         private FinalScreen finalScreen;
         
-       
         private void Start()
         {
             OnGameScreenAction += StartGame;
@@ -31,7 +30,6 @@ namespace Core
             OnMainScreenAction += MainMenu;
             MainMenu();
         }
-
 
         private void StartGame()
         {
@@ -42,6 +40,7 @@ namespace Core
                 playerScript.Setup(bulletPrefabs);
                 gameLevel = Instantiate(gameLevelPrefab, gameDirectory.transform);
                 gameScreen = screenController.ShowGameScreen();
+                gameScreen.Setup(OnFinishScreenAction);
                 if (menuScreen) Destroy(menuScreen.gameObject);
             }
         }
@@ -52,6 +51,7 @@ namespace Core
             {
                 isStartGame = false;
                 finalScreen = screenController.ShowFinalScreen();
+                finalScreen.Setup(OnMainScreenAction);
                 if (playerScript) Destroy(playerScript.gameObject);
                 if (gameLevel) Destroy(gameLevel.gameObject);
             }
@@ -60,6 +60,7 @@ namespace Core
         private void MainMenu()
         {
             menuScreen = screenController.ShowMainScreen();
+            menuScreen.Setup(OnGameScreenAction);
             if (finalScreen) Destroy(finalScreen.gameObject);
         }
     }

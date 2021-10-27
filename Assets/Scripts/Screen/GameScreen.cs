@@ -1,4 +1,4 @@
-using Core;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,9 +6,10 @@ public class GameScreen : BaseScreen
 {
     [SerializeField] private Button finishButton;
 
-    public void Setup()
+    private Action finishButtonAction;
+    public void Setup(Action action)
     {
-        
+        finishButtonAction = action;
     }
     private void Start()
     {
@@ -17,6 +18,6 @@ public class GameScreen : BaseScreen
 
     private void FinishClickButton()
     {
-        Meta.OnFinishScreenAction?.Invoke();
+        finishButtonAction?.Invoke();
     }
 }
