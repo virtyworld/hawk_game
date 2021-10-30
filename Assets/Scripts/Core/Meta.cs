@@ -41,7 +41,6 @@ namespace Core
                 gameLevel = Instantiate(gameLevelPrefab, gameDirectory.transform);
                 gameScreen = screenController.ShowGameScreen();
                 gameScreen.Setup(OnFinishScreenAction);
-                if (menuScreen) Destroy(menuScreen.gameObject);
             }
         }
         
@@ -61,7 +60,6 @@ namespace Core
         {
             menuScreen = screenController.ShowMainScreen();
             menuScreen.Setup(OnGameScreenAction);
-            if (finalScreen) Destroy(finalScreen.gameObject);
         }
     }
 }
