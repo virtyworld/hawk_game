@@ -12,9 +12,11 @@ namespace Core
         
         [SerializeField] private Character playerScriptPrefab;
         [SerializeField] private Bullet[] bulletPrefabs;
+        [SerializeField] private Bullet[] enemyBulletPrefabs;
         [SerializeField] private GameObject gameDirectory;
         [SerializeField] private GameObject gameLevelPrefab;
         [SerializeField] private ScreenController screenController;
+        [SerializeField] private EnemyController enemyController;
         
         private Character playerScript;
         private GameObject gameLevel;
@@ -22,6 +24,9 @@ namespace Core
         private MenuScreen menuScreen;
         private GameScreen gameScreen;
         private FinalScreen finalScreen;
+        private Enemy enemy1Script;
+        private Enemy enemy2Script;
+       
         
         private void Start()
         {
@@ -33,14 +38,18 @@ namespace Core
 
         private void StartGame()
         {
+            
             if (!isStartGame)
             {
+                
                 isStartGame = true;
                 playerScript = Instantiate(playerScriptPrefab,gameDirectory.transform);
                 playerScript.Setup(bulletPrefabs);
                 gameLevel = Instantiate(gameLevelPrefab, gameDirectory.transform);
                 gameScreen = screenController.ShowGameScreen();
                 gameScreen.Setup(OnFinishScreenAction);
+                enemy1Script = enemyController.SpawnEnemy1();
+                enemy1Script = enemyController.SpawnEnemy2();
             }
         }
         
@@ -53,6 +62,8 @@ namespace Core
                 finalScreen.Setup(OnMainScreenAction);
                 if (playerScript) Destroy(playerScript.gameObject);
                 if (gameLevel) Destroy(gameLevel.gameObject);
+                if (enemy1Script) Destroy(enemy1Script.gameObject);
+                if (enemy2Script) Destroy(enemy2Script.gameObject);
             }
         }
 

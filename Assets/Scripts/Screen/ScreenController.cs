@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Screen
@@ -9,7 +10,7 @@ namespace Screen
         [SerializeField] private BaseScreen[] screenPrefabs;
         [SerializeField] private GameObject menuDirectory;
 
-        private List<BaseScreen> baseScreens = new List<BaseScreen>();
+        private List<BaseScreen> screens = new List<BaseScreen>();
 
         public GameScreen ShowGameScreen()
         {
@@ -23,52 +24,43 @@ namespace Screen
         {
             return GetScreen<FinalScreen>();
         }
-        
-            
+
         private T GetScreen<T> () where T:BaseScreen
         {
             Type type = typeof(T);
-            BaseScreen bs;
-            
-            ScreenQueue();
-            
-            foreach (BaseScreen screen in baseScreens)
-            {
-                if (type == screen.GetType())
-                {
-                    screen.gameObject.SetActive(true);
-                    return  (T) screen;
-                }
-            }
+            HideScreen();
+            BaseScreen screen = GetScreen(type);
 
-            if (type == typeof(GameScreen))
-            {
-                bs = Instantiate(screenPrefabs[1],menuDirectory.transform);
-                baseScreens.Add(bs);
-            }
-            else if (type == typeof(FinalScreen))
-            {
-                bs = Instantiate(screenPrefabs[2],menuDirectory.transform);
-                baseScreens.Add(bs);
-            }
-            else
-            {
-                bs = Instantiate(screenPrefabs[0],menuDirectory.transform);
-                baseScreens.Add(bs);
-            }
-
-            return  (T) bs;
+            return  (T) screen;
         }
         
-        private void ScreenQueue()
+        private void HideScreen()
         {
-            if (baseScreens.Count > 0)
+            if (screens.Count > 0)
             {
-                foreach (BaseScreen screen in baseScreens)
+                foreach (BaseScreen screen in screens)
                 {
                     screen.gameObject.SetActive(false);
                 }
             }
+        }
+
+        private BaseScreen GetScreen(Type type)
+        {
+            BaseScreen screen = screens.FirstOrDefault(x => x.GetType() == type);
+            
+            if (screen == null)
+            {
+                screen = screenPrefabs.FirstOrDefault(x => x.GetType() == type);
+                screen =  Instantiate(screen,menuDirectory.transform);
+                screens.Add(screen);
+            }
+            else
+            {
+                screen.gameObject.SetActive(true); 
+            }
+
+            return screen;
         }
     }
 }
