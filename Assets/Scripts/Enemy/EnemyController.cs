@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,11 +9,6 @@ public class EnemyController : MonoBehaviour
    [SerializeField] private GameObject gameDirectory;
 
    private List<Enemy> enemies = new List<Enemy>();
-   
-   public void Setup()
-   {
-      
-   }
 
    public Enemy1 SpawnEnemy1()
    {

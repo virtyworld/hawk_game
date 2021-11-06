@@ -23,4 +23,9 @@ public class EnemyBullet : MonoBehaviour
         yield return new WaitForSeconds(bulletLifeTime);
         Destroy(gameObject);
     }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
+    }
 }

@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class Enemy2 : Enemy
 {
-   
     [SerializeField] private float bulletAngle;
 
-    // public void Setup(Bullet[] bullet)
-    // {
-    //     this.bullet = bullet;
-    // }
+    public void Setup(Bullet[] bullet)
+    {
+        this.bullet = bullet;
+    }
+    
     private void FixedUpdate()
     {
         Shoot();
@@ -39,9 +39,9 @@ public class Enemy2 : Enemy
         Vector3 position = gameObject.transform.position;
         if (bulletAngle != 0)
         {
-            Transform bullet1 = Instantiate(bullet[Random.Range(0, bullet.Length)].transform, new Vector3(position.x, position.y - 1,position.z), Quaternion.identity);
+            Transform bullet1 = Instantiate(bullet[Random.Range(0, bullet.Length)].transform, new Vector3(position.x + 0.5f, position.y - 0.5f,position.z), Quaternion.identity);
             bullet1.Rotate(new Vector3(0f,0f,bulletAngle));
-            Transform bullet2  = Instantiate(bullet[Random.Range(0, bullet.Length)].transform, new Vector3(position.x, position.y - 1,position.z), Quaternion.identity);
+            Transform bullet2  = Instantiate(bullet[Random.Range(0, bullet.Length)].transform, new Vector3(position.x - 0.5f, position.y - 0.5f ,position.z), Quaternion.identity);
             bullet2.Rotate(new Vector3(0f,0f,-bulletAngle));
         }
         else

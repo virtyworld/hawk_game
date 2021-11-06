@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class Enemy1 : Enemy
 {
-    // public void Setup(Bullet[] bullet)
-    // {
-    //     this.bullet = bullet;
-    // }
+    public void Setup(Bullet[] bullet)
+    {
+        this.bullet = bullet;
+    }
+    
     private void FixedUpdate()
     {
         Shoot();
@@ -34,7 +35,7 @@ public class Enemy1 : Enemy
     private void Shooting()
     {
         Vector3 position = gameObject.transform.position;
-        Transform enemy = Instantiate(bullet[Random.Range(0, bullet.Length)].transform, new Vector3(position.x, position.y - 1,position.z), Quaternion.identity); 
+        Instantiate(bullet[Random.Range(0, bullet.Length)].transform, new Vector3(position.x, position.y - 1,position.z), Quaternion.identity); 
         
     }
 }

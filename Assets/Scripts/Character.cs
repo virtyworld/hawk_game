@@ -27,7 +27,8 @@ public class Character : MonoBehaviour
     private void Move()
     {
         Vector3 cursor = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
-      
+        cursor.z = 0f;
+        
         if (Input.GetMouseButton(0))
         {
             if (oldCursorPos != cursor)
@@ -41,7 +42,7 @@ public class Character : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position,  oldCharacterPos, Time.deltaTime * moveSpeed);
         }
-        
+
         oldCursorPos = cursor;
     }
   

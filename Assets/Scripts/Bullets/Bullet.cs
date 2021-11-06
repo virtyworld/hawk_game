@@ -1,6 +1,6 @@
+using System;
 using System.Collections;
 using UnityEngine;
-
 
 public class Bullet : MonoBehaviour
 {
@@ -22,6 +22,11 @@ public class Bullet : MonoBehaviour
     IEnumerator Destroy()
     {
         yield return new WaitForSeconds(bulletLifeTime);
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
         Destroy(gameObject);
     }
 }

@@ -24,10 +24,9 @@ namespace Core
         private MenuScreen menuScreen;
         private GameScreen gameScreen;
         private FinalScreen finalScreen;
-        private Enemy enemy1Script;
-        private Enemy enemy2Script;
-       
-        
+        private Enemy1 enemy1Script;
+        private Enemy2 enemy2Script;
+
         private void Start()
         {
             OnGameScreenAction += StartGame;
@@ -38,10 +37,8 @@ namespace Core
 
         private void StartGame()
         {
-            
             if (!isStartGame)
             {
-                
                 isStartGame = true;
                 playerScript = Instantiate(playerScriptPrefab,gameDirectory.transform);
                 playerScript.Setup(bulletPrefabs);
@@ -49,7 +46,9 @@ namespace Core
                 gameScreen = screenController.ShowGameScreen();
                 gameScreen.Setup(OnFinishScreenAction);
                 enemy1Script = enemyController.SpawnEnemy1();
-                enemy1Script = enemyController.SpawnEnemy2();
+                enemy1Script.Setup(bulletPrefabs);
+                enemy2Script = enemyController.SpawnEnemy2();
+                enemy2Script.Setup(bulletPrefabs);
             }
         }
         
