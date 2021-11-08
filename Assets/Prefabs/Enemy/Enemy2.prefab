@@ -158,14 +158,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e4d456c1c159a444dbe95a20c5a25be0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d7cf486bb159e334580aceb954db5048, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -372,8 +372,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 1
-  bullet:
-  - {fileID: 5737049273347897482, guid: 868fd3257fa46504dab389680a51cb4a, type: 3}
   bulletAngle: 45
 --- !u!114 &8262449803626576269
 MonoBehaviour:

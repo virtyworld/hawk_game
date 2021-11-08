@@ -12,7 +12,7 @@ namespace Core
         
         [SerializeField] private Character playerScriptPrefab;
         [SerializeField] private Bullet[] bulletPrefabs;
-        [SerializeField] private Bullet[] enemyBulletPrefabs;
+        [SerializeField] private EnemyBullet[] enemyBulletPrefabs;
         [SerializeField] private GameObject gameDirectory;
         [SerializeField] private GameObject gameLevelPrefab;
         [SerializeField] private ScreenController screenController;
@@ -46,9 +46,9 @@ namespace Core
                 gameScreen = screenController.ShowGameScreen();
                 gameScreen.Setup(OnFinishScreenAction);
                 enemy1Script = enemyController.SpawnEnemy1();
-                enemy1Script.Setup(bulletPrefabs);
+                enemy1Script.Setup(enemyBulletPrefabs);
                 enemy2Script = enemyController.SpawnEnemy2();
-                enemy2Script.Setup(bulletPrefabs);
+                enemy2Script.Setup(enemyBulletPrefabs);
             }
         }
         

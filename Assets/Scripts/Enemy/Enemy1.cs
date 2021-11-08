@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy1 : Enemy
 {
-    public void Setup(Bullet[] bullet)
+    public void Setup(EnemyBullet[] bullet)
     {
         this.bullet = bullet;
     }
@@ -35,7 +35,6 @@ public class Enemy1 : Enemy
     private void Shooting()
     {
         Vector3 position = gameObject.transform.position;
-        Instantiate(bullet[Random.Range(0, bullet.Length)].transform, new Vector3(position.x, position.y - 1,position.z), Quaternion.identity); 
-        
+        Instantiate(bullet[Random.Range(0, bullet.Length)].transform, new Vector3(position.x, position.y - 1,position.z), Quaternion.identity);
     }
 }

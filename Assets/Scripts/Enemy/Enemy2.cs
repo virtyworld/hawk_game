@@ -4,7 +4,7 @@ public class Enemy2 : Enemy
 {
     [SerializeField] private float bulletAngle;
 
-    public void Setup(Bullet[] bullet)
+    public void Setup(EnemyBullet[] bullet)
     {
         this.bullet = bullet;
     }
