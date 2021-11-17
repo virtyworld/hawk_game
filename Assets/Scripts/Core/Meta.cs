@@ -12,11 +12,12 @@ namespace Core
         
         [SerializeField] private Character playerScriptPrefab;
         [SerializeField] private Bullet[] bulletPrefabs;
-        [SerializeField] private EnemyBullet[] enemyBulletPrefabs;
         [SerializeField] private GameObject gameDirectory;
         [SerializeField] private GameObject gameLevelPrefab;
         [SerializeField] private ScreenController screenController;
         [SerializeField] private EnemyController enemyController;
+        [SerializeField] protected BulletLauncher bullet1LauncherPrefab ;
+        [SerializeField] protected BulletLauncher bullet2LauncherPrefab ;
         
         private Character playerScript;
         private GameObject gameLevel;
@@ -24,8 +25,8 @@ namespace Core
         private MenuScreen menuScreen;
         private GameScreen gameScreen;
         private FinalScreen finalScreen;
-        private Enemy1 enemy1Script;
-        private Enemy2 enemy2Script;
+        private Enemy enemy1;
+        private Enemy enemy2;
 
         private void Start()
         {
@@ -45,10 +46,10 @@ namespace Core
                 gameLevel = Instantiate(gameLevelPrefab, gameDirectory.transform);
                 gameScreen = screenController.ShowGameScreen();
                 gameScreen.Setup(OnFinishScreenAction);
-                enemy1Script = enemyController.SpawnEnemy1();
-                enemy1Script.Setup(enemyBulletPrefabs);
-                enemy2Script = enemyController.SpawnEnemy2();
-                enemy2Script.Setup(enemyBulletPrefabs);
+                enemy1 = enemyController.SpawnEnemy1();
+                enemy1.Setup(bullet1LauncherPrefab);
+                enemy2 = enemyController.SpawnEnemy2();
+                enemy2.Setup(bullet2LauncherPrefab);
             }
         }
         
@@ -61,8 +62,8 @@ namespace Core
                 finalScreen.Setup(OnMainScreenAction);
                 if (playerScript) Destroy(playerScript.gameObject);
                 if (gameLevel) Destroy(gameLevel.gameObject);
-                if (enemy1Script) Destroy(enemy1Script.gameObject);
-                if (enemy2Script) Destroy(enemy2Script.gameObject);
+                // if (enemy1) Destroy(enemy1Script.gameObject);
+                // if (enemy2) Destroy(enemy2Script.gameObject);
             }
         }
 

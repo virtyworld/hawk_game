@@ -171,8 +171,8 @@ MonoBehaviour:
   - {fileID: 7138998392144842554, guid: 16fb8edda7c7eeb4486ca95feccf994b, type: 3}
   - {fileID: 354937656187901799, guid: 07e60692d2bacad468ca1e4a0ea04d5c, type: 3}
   enemyBulletPrefabs:
-  - {fileID: -2310782670076766522, guid: ce92e8c3f7cedd440a1a673ddf965a8c, type: 3}
-  - {fileID: 6868406189637775880, guid: 868fd3257fa46504dab389680a51cb4a, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   gameDirectory: {fileID: 959893555}
   gameLevelPrefab: {fileID: 1312569294653462976, guid: 452a599d61c57f24bb1f17bae8141a13, type: 3}
   screenController: {fileID: 2047956798}
@@ -522,6 +522,9 @@ MonoBehaviour:
   - {fileID: 1425719997883448875, guid: 45198818ef2aabd46ae5fe121809129c, type: 3}
   - {fileID: 1483007897567331147, guid: 514cddcabccc23d498f7001cf3dbef7b, type: 3}
   gameDirectory: {fileID: 959893555}
+  fireRate: 1
+  enemy1LauncherPrefab: {fileID: 0}
+  enemy2LauncherPrefab: {fileID: 0}
 --- !u!4 &1349563677
 Transform:
   m_ObjectHideFlags: 0

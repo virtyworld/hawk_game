@@ -3,10 +3,19 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float speed;
     [SerializeField] private Rigidbody rigidbody;
-    [SerializeField] private float bulletLifeTime;
-  
+
+    private float bulletLifeTime;
+    private BulletDirection bulletDirection;
+    private float speed;
+    private BulletLauncher bulletLauncher;
+    
+    public void Setup(BulletLauncher bulletLauncher)
+    {
+        this.bulletLauncher = bulletLauncher;
+    }
+    
+    
     private void FixedUpdate()
     {
         BulletMove();
@@ -15,7 +24,15 @@ public class Bullet : MonoBehaviour
 
     private void BulletMove()
     {
-        rigidbody.velocity = transform.up * speed;
+        if (bulletLauncher.Directions == BulletDirection.up)
+        {
+            rigidbody.velocity = transform.up * speed;
+        }
+        else
+        {
+            rigidbody.velocity = -transform.up * speed;
+        }
+        
     }
     
     IEnumerator Destroy()

@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 1483007896379216209}
   - component: {fileID: 1483007896379216208}
   - component: {fileID: 1483007896379216207}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
