@@ -418,6 +418,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 9
   fireRate: 2
+  bulletLauncher:
+  - {fileID: 4505210544941197698, guid: 55e4aa1233e68d04496d233cf2694291, type: 3}
 --- !u!96 &2021414617046915002
 TrailRenderer:
   serializedVersion: 2

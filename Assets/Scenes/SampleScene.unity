@@ -170,13 +170,12 @@ MonoBehaviour:
   bulletPrefabs:
   - {fileID: 7138998392144842554, guid: 16fb8edda7c7eeb4486ca95feccf994b, type: 3}
   - {fileID: 354937656187901799, guid: 07e60692d2bacad468ca1e4a0ea04d5c, type: 3}
-  enemyBulletPrefabs:
-  - {fileID: 0}
-  - {fileID: 0}
   gameDirectory: {fileID: 959893555}
   gameLevelPrefab: {fileID: 1312569294653462976, guid: 452a599d61c57f24bb1f17bae8141a13, type: 3}
   screenController: {fileID: 2047956798}
   enemyController: {fileID: 1349563676}
+  bullet1LauncherPrefab: {fileID: 8124488154196316145, guid: 8971b683645b2ae42991beab59f5992e, type: 3}
+  bullet2LauncherPrefab: {fileID: 8043470628522882743, guid: 567d798e737253b41a94c4c2844f10f0, type: 3}
 --- !u!1 &578441011
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,13 +517,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d48eab2682032d459cf33d7c8f0c030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 1425719997883448875, guid: 45198818ef2aabd46ae5fe121809129c, type: 3}
-  - {fileID: 1483007897567331147, guid: 514cddcabccc23d498f7001cf3dbef7b, type: 3}
+  enemy1Prefab: {fileID: 1425719997883448875, guid: 45198818ef2aabd46ae5fe121809129c, type: 3}
+  enemy2Prefab: {fileID: 1483007897567331147, guid: 514cddcabccc23d498f7001cf3dbef7b, type: 3}
   gameDirectory: {fileID: 959893555}
-  fireRate: 1
-  enemy1LauncherPrefab: {fileID: 0}
-  enemy2LauncherPrefab: {fileID: 0}
+  bulletLaunchers:
+  - {fileID: 8124488154196316145, guid: 8971b683645b2ae42991beab59f5992e, type: 3}
+  - {fileID: 8043470628522882743, guid: 567d798e737253b41a94c4c2844f10f0, type: 3}
 --- !u!4 &1349563677
 Transform:
   m_ObjectHideFlags: 0
