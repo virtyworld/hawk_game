@@ -6,15 +6,15 @@ public class Character : MonoBehaviour
     [Header("Character setup")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float fireRate;
-    [SerializeField] private BulletLauncher[] bulletLauncher;
+    [SerializeField] private Bullet[] bulletPrefabs;
+    [SerializeField] private BulletLauncher bulletLauncher;
+    [SerializeField] private float bulletCount;
    
     private float currentTime;
     private bool isShoot;
     
     private Vector3 oldCharacterPos;
     private Vector3 oldCursorPos;
-    private int randomBulletLauncher;
-    private int randomBulletPrefab;
 
     private void FixedUpdate()
     {
@@ -49,7 +49,8 @@ public class Character : MonoBehaviour
         if (currentTime == 0)
         {
             isShoot = true;
-            Shooting();
+            Vector3 position = gameObject.transform.position;
+            bulletLauncher.Shoot(bulletPrefabs[Random.Range(0,bulletPrefabs.Length)],bulletCount);
         }
 
         if (isShoot && currentTime < fireRate)
@@ -62,30 +63,5 @@ public class Character : MonoBehaviour
             currentTime = 0;
             isShoot = false;
         }
-    }
-
-    private void Shooting()
-    {
-        Vector3 position = gameObject.transform.position;
-
-        GetRandBulletPrefab();
-        
-        Bullet bullets =  Instantiate(bulletLauncher[randomBulletLauncher].BulletPrefabs[randomBulletPrefab], new Vector3(position.x, position.y + 1,position.z), Quaternion.identity);
-        bullets.Setup(bulletLauncher[randomBulletLauncher]);
-    }
-
-    private void GetRandBulletPrefab()
-    {
-        Bullet bullet = null;
-        randomBulletLauncher = Random.Range(0, bulletLauncher.Length);
-        
-        for (int i = 0; i < bulletLauncher.Length; i++)
-        {
-            if (randomBulletLauncher == i)
-            {
-                randomBulletPrefab = Random.Range(0,bulletLauncher[i].BulletPrefabs.Length);
-            }
-        }
-
     }
 }

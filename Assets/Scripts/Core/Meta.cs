@@ -14,7 +14,8 @@ namespace Core
         [SerializeField] private GameObject gameDirectory;
         [SerializeField] private GameObject gameLevelPrefab;
         [SerializeField] private ScreenController screenController;
-        [SerializeField] private EnemyController enemyController;
+        [SerializeField] private Enemy enemy1Prefab;
+        [SerializeField] private Enemy enemy2Prefab;
 
         private Character playerScript;
         private GameObject gameLevel;
@@ -42,8 +43,8 @@ namespace Core
                 gameLevel = Instantiate(gameLevelPrefab, gameDirectory.transform);
                 gameScreen = screenController.ShowGameScreen();
                 gameScreen.Setup(OnFinishScreenAction);
-                enemy1 = enemyController.SpawnEnemy1();
-                enemy2 = enemyController.SpawnEnemy2();
+                enemy1 = Instantiate(enemy1Prefab, gameDirectory.transform);
+                enemy2 = Instantiate(enemy2Prefab, gameDirectory.transform);
             }
         }
         

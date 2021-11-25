@@ -167,15 +167,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScriptPrefab: {fileID: 4936707387852323188, guid: ad7e4065beea3b247b735282c6e6ef08, type: 3}
-  bulletPrefabs:
-  - {fileID: 7138998392144842554, guid: 16fb8edda7c7eeb4486ca95feccf994b, type: 3}
-  - {fileID: 354937656187901799, guid: 07e60692d2bacad468ca1e4a0ea04d5c, type: 3}
   gameDirectory: {fileID: 959893555}
   gameLevelPrefab: {fileID: 1312569294653462976, guid: 452a599d61c57f24bb1f17bae8141a13, type: 3}
   screenController: {fileID: 2047956798}
-  enemyController: {fileID: 1349563676}
-  bullet1LauncherPrefab: {fileID: 8124488154196316145, guid: 8971b683645b2ae42991beab59f5992e, type: 3}
-  bullet2LauncherPrefab: {fileID: 8043470628522882743, guid: 567d798e737253b41a94c4c2844f10f0, type: 3}
+  enemy1Prefab: {fileID: 4487391629377055289, guid: 45198818ef2aabd46ae5fe121809129c, type: 3}
+  enemy2Prefab: {fileID: 5197651419066767580, guid: 514cddcabccc23d498f7001cf3dbef7b, type: 3}
 --- !u!1 &578441011
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,55 +484,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -15, y: 0, z: 0}
---- !u!1 &1349563675
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1349563677}
-  - component: {fileID: 1349563676}
-  m_Layer: 0
-  m_Name: EnemyController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1349563676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349563675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d48eab2682032d459cf33d7c8f0c030, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy1Prefab: {fileID: 1425719997883448875, guid: 45198818ef2aabd46ae5fe121809129c, type: 3}
-  enemy2Prefab: {fileID: 1483007897567331147, guid: 514cddcabccc23d498f7001cf3dbef7b, type: 3}
-  gameDirectory: {fileID: 959893555}
-  bulletLaunchers:
-  - {fileID: 8124488154196316145, guid: 8971b683645b2ae42991beab59f5992e, type: 3}
-  - {fileID: 8043470628522882743, guid: 567d798e737253b41a94c4c2844f10f0, type: 3}
---- !u!4 &1349563677
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349563675}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2047956793
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,11 +5,13 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody rigidbody;
    
-    private BulletLauncher bulletLauncher;
+    private float speed;
+    private float bulletLifeTime;
     
-    public void Setup(BulletLauncher bulletLauncher)
+    public void Setup(float speed,float bulletLifeTime)
     {
-        this.bulletLauncher = bulletLauncher;
+        this.speed = speed;
+        this.bulletLifeTime = bulletLifeTime;
     }
 
     private void FixedUpdate()
@@ -20,19 +22,12 @@ public class Bullet : MonoBehaviour
 
     private void BulletMove()
     {
-        if (bulletLauncher.Directions == BulletDirection.up)
-        {
-            rigidbody.velocity = transform.up * bulletLauncher.Speed;
-        }
-        if (bulletLauncher.Directions == BulletDirection.down)
-        {
-            rigidbody.velocity = -transform.up * bulletLauncher.Speed;
-        }
+        rigidbody.velocity = -transform.up * speed;
     }
     
     IEnumerator Destroy()
     {
-        yield return new WaitForSeconds(bulletLauncher.BulletLifeTime);
+        yield return new WaitForSeconds(bulletLifeTime);
         Destroy(gameObject);
     }
 

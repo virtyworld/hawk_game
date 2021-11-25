@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4292064703198371916}
   - component: {fileID: 8610178739038956720}
   - component: {fileID: 8174410630366538378}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 865771802929606511}
   - component: {fileID: 6069164564452612714}
   - component: {fileID: 7616034333989182702}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: HealthValue(TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7490742838513149001}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 458185918858098816}
   - component: {fileID: 1761163345960540219}
   - component: {fileID: 3712160579968961513}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,8 @@ GameObject:
   - component: {fileID: 4936707387852323188}
   - component: {fileID: 2021414617046915002}
   - component: {fileID: 1961115219965092253}
-  m_Layer: 7
+  - component: {fileID: -417015441263132846}
+  m_Layer: 12
   m_Name: Character
   m_TagString: Character
   m_Icon: {fileID: 0}
@@ -417,9 +418,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 9
-  fireRate: 2
-  bulletLauncher:
-  - {fileID: 4505210544941197698, guid: 55e4aa1233e68d04496d233cf2694291, type: 3}
+  fireRate: 1
+  bulletPrefabs:
+  - {fileID: 7138998392144842554, guid: 16fb8edda7c7eeb4486ca95feccf994b, type: 3}
+  - {fileID: 354937656187901799, guid: 07e60692d2bacad468ca1e4a0ea04d5c, type: 3}
+  bulletLauncher: {fileID: -417015441263132846}
+  bulletCount: 1
 --- !u!96 &2021414617046915002
 TrailRenderer:
   serializedVersion: 2
@@ -543,6 +547,22 @@ MonoBehaviour:
   currentHealth: 0
   healthImage: {fileID: 2402267254773291720}
   textHealth: {fileID: 7616034333989182702}
+--- !u!114 &-417015441263132846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3312754533542020424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0f00905ebbf2449be52fcb1e32b81a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  bulletLifeTime: 3
+  directions: 0
+  angle: 0
 --- !u!1 &5588691583768437965
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,7 +575,7 @@ GameObject:
   - component: {fileID: 7014162605433819793}
   - component: {fileID: 7425829922490973328}
   - component: {fileID: 6880331608456719040}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -655,7 +675,7 @@ GameObject:
   - component: {fileID: 3635547553241434902}
   - component: {fileID: 3395899636041970684}
   - component: {fileID: 172539972523196681}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -750,7 +770,7 @@ GameObject:
   - component: {fileID: 6131089840127208189}
   - component: {fileID: 1389421337171782104}
   - component: {fileID: 4852013409680401712}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -844,7 +864,7 @@ GameObject:
   - component: {fileID: 3295901797730662437}
   - component: {fileID: 4182988105089072186}
   - component: {fileID: 2402267254773291720}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -918,7 +938,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1113914526887842074}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

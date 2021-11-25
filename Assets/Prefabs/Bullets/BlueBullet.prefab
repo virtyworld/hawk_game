@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueBullet
       objectReference: {fileID: 0}
+    - target: {fileID: 4253917737766323072, guid: 62cbda1dce6d37f4a9b51c2df58d2bc9, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7838932134670380239, guid: 62cbda1dce6d37f4a9b51c2df58d2bc9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

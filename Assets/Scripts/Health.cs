@@ -15,6 +15,14 @@ public class Health : MonoBehaviour
         healthImage.fillAmount = 1;
     }
 
+    private void FixedUpdate()
+    {
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void TakeDamage(int damage)
     {
         if (currentHealth > 0)

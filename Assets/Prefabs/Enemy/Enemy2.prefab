@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1378078333023475735}
   - component: {fileID: 7080230134510219896}
   - component: {fileID: 241880482766353176}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 7228942379928820633}
   - component: {fileID: 8569570619753371416}
   - component: {fileID: 5387607351632153285}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: HealthImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4773698043782551032}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,8 @@ GameObject:
   - component: {fileID: 6236309708895158774}
   - component: {fileID: 8262449803626576269}
   - component: {fileID: 5197651419066767580}
-  m_Layer: 7
+  - component: {fileID: 6928119673566218679}
+  m_Layer: 9
   m_Name: Enemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,6 +388,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344497925605e1c4485d1aad33cb90c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireRate: 1
+  bulletCount: 1
+  bulletPrefabs:
+  - {fileID: -522412734203255507, guid: 868fd3257fa46504dab389680a51cb4a, type: 3}
+  - {fileID: 1384714636342550268, guid: ce92e8c3f7cedd440a1a673ddf965a8c, type: 3}
+  bulletLauncher: {fileID: 6928119673566218679}
+--- !u!114 &6928119673566218679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483007897567331146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0f00905ebbf2449be52fcb1e32b81a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  bulletLifeTime: 3
+  directions: 1
+  angle: 0
 --- !u!1 &5502434928188690959
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +421,7 @@ GameObject:
   - component: {fileID: 2826444529202039484}
   - component: {fileID: 6088877155365751542}
   - component: {fileID: 6710727839900991640}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +496,7 @@ GameObject:
   - component: {fileID: 1432258521591844946}
   - component: {fileID: 6366753025499983550}
   - component: {fileID: 8781175029354926019}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: HealthValue(TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
