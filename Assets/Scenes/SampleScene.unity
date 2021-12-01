@@ -168,7 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerScriptPrefab: {fileID: 4936707387852323188, guid: ad7e4065beea3b247b735282c6e6ef08, type: 3}
   gameDirectory: {fileID: 959893555}
-  gameLevelPrefab: {fileID: 1312569294653462976, guid: 452a599d61c57f24bb1f17bae8141a13, type: 3}
+  gameLevel1Prefab: {fileID: 1312569294653462976, guid: 452a599d61c57f24bb1f17bae8141a13, type: 3}
+  gameLevel2Prefab: {fileID: 1312569294653462976, guid: 2a9ec257a4b0ef943afb4f01d12ab3d5, type: 3}
   screenController: {fileID: 2047956798}
   enemy1Prefab: {fileID: 4487391629377055289, guid: 45198818ef2aabd46ae5fe121809129c, type: 3}
   enemy2Prefab: {fileID: 5197651419066767580, guid: 514cddcabccc23d498f7001cf3dbef7b, type: 3}

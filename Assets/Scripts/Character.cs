@@ -49,7 +49,6 @@ public class Character : MonoBehaviour
         if (currentTime == 0)
         {
             isShoot = true;
-            Vector3 position = gameObject.transform.position;
             bulletLauncher.Shoot(bulletPrefabs[Random.Range(0,bulletPrefabs.Length)],bulletCount);
         }
 
