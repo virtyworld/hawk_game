@@ -183,7 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1764cf4bf2e7594daf2767aec31222f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenPrefabs: []
   finishButton: {fileID: 7351222339082415691}
 --- !u!1 &7351222339082415693
 GameObject:

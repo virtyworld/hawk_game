@@ -14,11 +14,12 @@ namespace Core
         
         [SerializeField] private Character playerScriptPrefab;
         [SerializeField] private GameObject gameDirectory;
-        [SerializeField] private GameObject gameLevel1Prefab;
-        [SerializeField] private GameObject gameLevel2Prefab;
+        [SerializeField] private GameObject backgroundLvl1;
+        [SerializeField] private GameObject backgroundLvl2;
         [SerializeField] private ScreenController screenController;
-        [SerializeField] private Enemy enemy1Prefab;
-        [SerializeField] private Enemy enemy2Prefab;
+        [SerializeField] private ActiveGameZone activeGameZone;
+        [SerializeField] private Chunk[] lvl1Chunks;
+        [SerializeField] private Chunk[] lvl2Chunks;
 
         private Character playerScript;
         private GameObject gameLevel;
@@ -26,10 +27,7 @@ namespace Core
         private MenuScreen menuScreen;
         private GameScreen gameScreen;
         private FinalScreen finalScreen;
-        private Enemy enemy1;
-        private Enemy enemy2;
-        private List<Enemy> enemyListLevel1 = new List<Enemy>();
-        private List<Enemy> enemyListLevel2 = new List<Enemy>();
+        private Chunk chunk;
 
         private void Start()
         {
@@ -46,12 +44,11 @@ namespace Core
             {
                 isStartGame = true;
                 playerScript = Instantiate(playerScriptPrefab,gameDirectory.transform);
-                gameLevel = Instantiate(gameLevel1Prefab, gameDirectory.transform);
+                gameLevel = Instantiate(backgroundLvl1, gameDirectory.transform);
                 gameScreen = screenController.ShowGameScreen();
                 gameScreen.Setup(OnFinishScreenAction);
-                EnemyDestroy();
-                enemyListLevel1.Add(Instantiate(enemy1Prefab, gameDirectory.transform));
-                enemyListLevel1.Add(Instantiate(enemy2Prefab, gameDirectory.transform));
+                activeGameZone.Setup(lvl1Chunks,playerScript);
+                activeGameZone.SpawnChunk();
             }
         }
         private void StartGameLevel2()
@@ -60,12 +57,11 @@ namespace Core
             {
                 isStartGame = true;
                 playerScript = Instantiate(playerScriptPrefab,gameDirectory.transform);
-                gameLevel = Instantiate(gameLevel2Prefab, gameDirectory.transform);
+                gameLevel = Instantiate(backgroundLvl2, gameDirectory.transform);
                 gameScreen = screenController.ShowGameScreen();
                 gameScreen.Setup(OnFinishScreenAction);
-                EnemyDestroy();
-                enemyListLevel2.Add(Instantiate(enemy1Prefab, gameDirectory.transform));
-                enemyListLevel2.Add(Instantiate(enemy2Prefab, gameDirectory.transform));
+                activeGameZone.Setup(lvl2Chunks,playerScript);
+                activeGameZone.SpawnChunk();
             }
         }
         
@@ -76,7 +72,6 @@ namespace Core
                 isStartGame = false;
                 finalScreen = screenController.ShowFinalScreen();
                 finalScreen.Setup(OnMainScreenAction);
-                EnemyDestroy();
                 if (playerScript) Destroy(playerScript.gameObject);
                 if (gameLevel) Destroy(gameLevel.gameObject);
             }
@@ -87,25 +82,7 @@ namespace Core
             menuScreen = screenController.ShowMainScreen();
             menuScreen.Setup(OnGameLevel1ScreenAction,OnGameLevel2ScreenAction);
         }
+
         
-        private void EnemyDestroy()
-        {
-            if (enemyListLevel1.Count > 0)
-            {
-                foreach (Enemy enemylvl1 in enemyListLevel1)
-                {
-                    Destroy(enemylvl1.gameObject);
-                }
-                enemyListLevel1.Clear(); 
-            }
-            if (enemyListLevel2.Count > 0)
-            {
-                foreach (Enemy enemylvl2 in enemyListLevel2)
-                {
-                    Destroy(enemylvl2.gameObject);
-                }
-                enemyListLevel2.Clear(); 
-            }
-        }
     }
 }

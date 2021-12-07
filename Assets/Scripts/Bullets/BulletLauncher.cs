@@ -12,7 +12,7 @@ public class BulletLauncher : BaseLauncher
     {
         for (int i = 1; i < bulletCount+1; i++)
         {
-            Bullet bullet = Instantiate(bulletPrefab,new Vector3(transform.position.x, transform.position.y,transform.position.z), Quaternion.identity);
+            Bullet bullet = Instantiate(bulletPrefab,new Vector3(transform.position.x, transform.position.y,transform.position.z), Quaternion.identity,transform.parent);
             bullet.Setup(speed,bulletLifeTime);
             bullet.gameObject.transform.Rotate(new Vector3(0f,0f,GetAngle(directions,bulletCount,i)));
         }
