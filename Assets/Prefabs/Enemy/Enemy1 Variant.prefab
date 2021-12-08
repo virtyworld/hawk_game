@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1425719997883448869, guid: 45198818ef2aabd46ae5fe121809129c, type: 3}
       propertyPath: m_Name
-      value: Enemy1
+      value: Enemy1 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1425719997883448874, guid: 45198818ef2aabd46ae5fe121809129c, type: 3}
       propertyPath: m_RootOrder
@@ -55,5 +55,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4894366526701802197, guid: 45198818ef2aabd46ae5fe121809129c, type: 3}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 6741039813116449131}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45198818ef2aabd46ae5fe121809129c, type: 3}
+--- !u!198 &6741039813116449131 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3509903481438022039, guid: 45198818ef2aabd46ae5fe121809129c, type: 3}
+  m_PrefabInstance: {fileID: 7870415695326443772}
+  m_PrefabAsset: {fileID: 0}

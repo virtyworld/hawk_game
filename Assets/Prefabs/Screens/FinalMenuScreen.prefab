@@ -489,6 +489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4024395651474234490}
   - component: {fileID: 6299040818203137957}
+  - component: {fileID: 5565311647851165533}
   m_Layer: 5
   m_Name: FinalMenuScreen
   m_TagString: Untagged
@@ -532,6 +533,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goToMainMenuButton: {fileID: 4024395651207985575}
+  title: {fileID: 4024395650590471029}
+  description: {fileID: 2132106744099101046}
+  canvas: {fileID: 5565311647851165533}
+--- !u!225 &5565311647851165533
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4024395651474234469}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7758151314783314264
 GameObject:
   m_ObjectHideFlags: 0

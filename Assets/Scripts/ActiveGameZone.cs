@@ -9,13 +9,15 @@ public class ActiveGameZone : MonoBehaviour
     private int screenSizeHeight;
     private Chunk[] chunks;
     private Action OnNextChunkAction;
+    private Action OnWinScreenAction;
     private Chunk cnank;
     private List<Vector3> characterListPosition = new List<Vector3>();
    
     private int currentChunk;
-    public void Setup(Chunk[] chunks,Character character)
+    public void Setup(Chunk[] chunks,Action  OnWinScreenAction)
     {
         this.chunks = chunks;
+        this.OnWinScreenAction = OnWinScreenAction;
     }
     void Start()
     {
@@ -47,33 +49,37 @@ public class ActiveGameZone : MonoBehaviour
 
     private void MoveCamera()
     {
-        Debug.Log("currentChunk "+currentChunk);
-        if (currentChunk > 0)
+        if (IsThisLastChunk())
         {
-            if (transform.position != characterListPosition[currentChunk] )
+            //show win screen
+            OnWinScreenAction?.Invoke();
+        }
+        else
+        {
+            if (currentChunk > 0)
             {
-                Vector3 pos = new Vector3(characterListPosition[currentChunk].x,-characterListPosition[currentChunk].y,0);
-                transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * 1);
-            }  
+                if (transform.position != characterListPosition[currentChunk] )
+                {
+                    Vector3 pos = new Vector3(characterListPosition[currentChunk].x,-characterListPosition[currentChunk].y,0);
+                    transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * 1);
+                }  
+            }
         }
     }
     private void GoToNextChunk()
     {
-        if (IsThisLastChunk())
-        {
-            //show gamescreen
-        }
-        else
-        {
-            //TODO:move character
-            //character.transform.position += new Vector3(characterListPosition[currentChunk].x,characterListPosition[currentChunk].y,0);
-        }  
+        //TODO:move character
+        //character.transform.position += new Vector3(characterListPosition[currentChunk].x,characterListPosition[currentChunk].y,0);
+
         currentChunk += 1;
     }
 
     private bool IsThisLastChunk()
     {
-        
+        if (characterListPosition.Count == currentChunk)
+        {
+            return true;
+        }
         return false;
     }
     
@@ -88,7 +94,6 @@ public class ActiveGameZone : MonoBehaviour
             chunk.Setup(OnNextChunkAction);
             chunk.transform.position = new Vector3(0, orthographicSize * i, 0);
             characterListPosition.Add(chunk.transform.position);
-            Debug.Log("chunk.transform.position "+chunk.transform.position);
         }
           
     }

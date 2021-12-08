@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,12 +10,23 @@ public class Character : MonoBehaviour
     [SerializeField] private Bullet[] bulletPrefabs;
     [SerializeField] private BulletLauncher bulletLauncher;
     [SerializeField] private float bulletCount;
+    [SerializeField] private Health health;
    
     private float currentTime;
     private bool isShoot;
-    
     private Vector3 oldCharacterPos;
     private Vector3 oldCursorPos;
+    private Action OnLoseScreenAction;
+
+    public void Setup(Action OnLoseScreenAction)
+    {
+        this.OnLoseScreenAction = OnLoseScreenAction;
+    }
+
+    private void Start()
+    {
+        health.Setup(OnLoseScreenAction);
+    }
 
     private void FixedUpdate()
     {

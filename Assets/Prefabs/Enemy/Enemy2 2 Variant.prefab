@@ -63,5 +63,14 @@ PrefabInstance:
       propertyPath: angle
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 8262449803626576269, guid: 514cddcabccc23d498f7001cf3dbef7b, type: 3}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 505821052291591375}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 514cddcabccc23d498f7001cf3dbef7b, type: 3}
+--- !u!198 &505821052291591375 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4509160498101607710, guid: 514cddcabccc23d498f7001cf3dbef7b, type: 3}
+  m_PrefabInstance: {fileID: 4149724027001303505}
+  m_PrefabAsset: {fileID: 0}

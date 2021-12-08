@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Screen;
 using UnityEngine;
 
@@ -9,7 +8,9 @@ namespace Core
     {
         private static Action OnGameLevel1ScreenAction;
         private static Action OnGameLevel2ScreenAction;
-        private static Action OnFinishScreenAction;
+        private static Action OnQuitScreenAction;
+        private static Action OnLoseScreenAction;
+        private static Action OnWinScreenAction;
         private static Action OnMainScreenAction;
         
         [SerializeField] private Character playerScriptPrefab;
@@ -33,7 +34,9 @@ namespace Core
         {
             OnGameLevel1ScreenAction += StartGameLevel1;
             OnGameLevel2ScreenAction += StartGameLevel2;
-            OnFinishScreenAction += FinishGame;
+            OnQuitScreenAction += QuitGame;
+            OnLoseScreenAction += LoseGame;
+            OnWinScreenAction += WinGame;
             OnMainScreenAction += MainMenu;
             MainMenu();
         }
@@ -44,10 +47,11 @@ namespace Core
             {
                 isStartGame = true;
                 playerScript = Instantiate(playerScriptPrefab,gameDirectory.transform);
+                playerScript.Setup(OnLoseScreenAction);
                 gameLevel = Instantiate(backgroundLvl1, gameDirectory.transform);
                 gameScreen = screenController.ShowGameScreen();
-                gameScreen.Setup(OnFinishScreenAction);
-                activeGameZone.Setup(lvl1Chunks,playerScript);
+                gameScreen.Setup(OnQuitScreenAction);
+                activeGameZone.Setup(lvl1Chunks,OnWinScreenAction);
                 activeGameZone.SpawnChunk();
             }
         }
@@ -57,21 +61,49 @@ namespace Core
             {
                 isStartGame = true;
                 playerScript = Instantiate(playerScriptPrefab,gameDirectory.transform);
+                playerScript.Setup(OnLoseScreenAction);
                 gameLevel = Instantiate(backgroundLvl2, gameDirectory.transform);
                 gameScreen = screenController.ShowGameScreen();
-                gameScreen.Setup(OnFinishScreenAction);
-                activeGameZone.Setup(lvl2Chunks,playerScript);
+                gameScreen.Setup(OnQuitScreenAction);
+                activeGameZone.Setup(lvl2Chunks,OnWinScreenAction);
                 activeGameZone.SpawnChunk();
             }
         }
         
-        private void FinishGame()
+        private void QuitGame()
         {
             if (isStartGame)
             {
                 isStartGame = false;
                 finalScreen = screenController.ShowFinalScreen();
                 finalScreen.Setup(OnMainScreenAction);
+                finalScreen.QuitGame();
+                if (playerScript) Destroy(playerScript.gameObject);
+                if (gameLevel) Destroy(gameLevel.gameObject);
+            }
+        }
+        
+        private void LoseGame()
+        {
+            if (isStartGame)
+            {
+                isStartGame = false;
+                finalScreen = screenController.ShowFinalScreen();
+                finalScreen.Setup(OnMainScreenAction);
+                finalScreen.LoseGame();
+                if (playerScript) Destroy(playerScript.gameObject);
+                if (gameLevel) Destroy(gameLevel.gameObject);
+            }
+        }
+        
+        private void WinGame()
+        {
+            if (isStartGame)
+            {
+                isStartGame = false;
+                finalScreen = screenController.ShowFinalScreen();
+                finalScreen.Setup(OnMainScreenAction);
+                finalScreen.WinGame();
                 if (playerScript) Destroy(playerScript.gameObject);
                 if (gameLevel) Destroy(gameLevel.gameObject);
             }
