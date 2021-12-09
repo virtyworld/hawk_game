@@ -17,15 +17,17 @@ public class Character : MonoBehaviour
     private Vector3 oldCharacterPos;
     private Vector3 oldCursorPos;
     private Action OnLoseScreenAction;
+    private Score score;
 
-    public void Setup(Action OnLoseScreenAction)
+    public void Setup(Action OnLoseScreenAction,Score score = null)
     {
         this.OnLoseScreenAction = OnLoseScreenAction;
+        this.score = score;
     }
 
     private void Start()
     {
-        health.Setup(OnLoseScreenAction);
+        health.Setup(OnLoseScreenAction,score);
     }
 
     private void FixedUpdate()

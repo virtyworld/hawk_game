@@ -19,6 +19,7 @@ namespace Core
         [SerializeField] private GameObject backgroundLvl2;
         [SerializeField] private ScreenController screenController;
         [SerializeField] private ActiveGameZone activeGameZone;
+        [SerializeField] private Score scorePrefab;
         [SerializeField] private Chunk[] lvl1Chunks;
         [SerializeField] private Chunk[] lvl2Chunks;
 
@@ -29,6 +30,7 @@ namespace Core
         private GameScreen gameScreen;
         private FinalScreen finalScreen;
         private Chunk chunk;
+        private Score score;
 
         private void Start()
         {
@@ -46,13 +48,15 @@ namespace Core
             if (!isStartGame)
             {
                 isStartGame = true;
+                score = Instantiate(scorePrefab);
                 playerScript = Instantiate(playerScriptPrefab,gameDirectory.transform);
-                playerScript.Setup(OnLoseScreenAction);
+                playerScript.Setup(OnLoseScreenAction,score);
                 gameLevel = Instantiate(backgroundLvl1, gameDirectory.transform);
                 gameScreen = screenController.ShowGameScreen();
-                gameScreen.Setup(OnQuitScreenAction);
+                gameScreen.Setup(OnQuitScreenAction,score);
                 activeGameZone.Setup(lvl1Chunks,OnWinScreenAction);
                 activeGameZone.SpawnChunk();
+               
             }
         }
         private void StartGameLevel2()

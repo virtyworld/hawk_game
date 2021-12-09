@@ -172,6 +172,7 @@ MonoBehaviour:
   backgroundLvl2: {fileID: 1312569294653462976, guid: 2a9ec257a4b0ef943afb4f01d12ab3d5, type: 3}
   screenController: {fileID: 2047956798}
   activeGameZone: {fileID: 959893557}
+  scorePrefab: {fileID: 5796139824836433165, guid: 833e5649e66a40841843f2bf78db6d6d, type: 3}
   lvl1Chunks:
   - {fileID: 5764901985632508749, guid: fc593f8ab5a5c794190810b910c0ffb2, type: 3}
   - {fileID: 5934362592968173710, guid: 9da5d3254761dd04abb3dbb423d94ef8, type: 3}
@@ -506,7 +507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ba6b60639782d41944a11662abf3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 755375151}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

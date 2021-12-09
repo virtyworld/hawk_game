@@ -31,5 +31,5 @@ public class Chunk : MonoBehaviour
       return false;
    }
    
-   
+   //TODO: create spawn enemies in chunk and set position * scale
 }
