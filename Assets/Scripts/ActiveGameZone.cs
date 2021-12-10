@@ -12,12 +12,14 @@ public class ActiveGameZone : MonoBehaviour
     private Action OnWinScreenAction;
     private Chunk cnank;
     private List<Vector3> characterListPosition = new List<Vector3>();
-   
+    private Score score;
     private int currentChunk;
-    public void Setup(Chunk[] chunks,Action  OnWinScreenAction)
+    
+    public void Setup(Chunk[] chunks,Action  OnWinScreenAction,Score score = null)
     {
         this.chunks = chunks;
         this.OnWinScreenAction = OnWinScreenAction;
+        this.score = score;
     }
     void Start()
     {

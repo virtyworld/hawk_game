@@ -27,7 +27,7 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        health.Setup(OnLoseScreenAction,score);
+        health.Setup(score,OnLoseScreenAction);
     }
 
     private void FixedUpdate()

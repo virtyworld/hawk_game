@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -6,9 +8,21 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float bulletCount;
     [SerializeField] private Bullet[] bulletPrefabs;
     [SerializeField] private BulletLauncher bulletLauncher;
+    [SerializeField] private Health health;
   
     private float currentTimes;
     private bool isShoots;
+    private Score score;
+
+    public void Setup(Score score)
+    {
+        this.score = score;
+    }
+
+    private void Start()
+    {
+        health.Setup(score);
+    }
 
     private void FixedUpdate()
     {

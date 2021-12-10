@@ -54,7 +54,7 @@ namespace Core
                 gameLevel = Instantiate(backgroundLvl1, gameDirectory.transform);
                 gameScreen = screenController.ShowGameScreen();
                 gameScreen.Setup(OnQuitScreenAction,score);
-                activeGameZone.Setup(lvl1Chunks,OnWinScreenAction);
+                activeGameZone.Setup(lvl1Chunks,OnWinScreenAction,score);
                 activeGameZone.SpawnChunk();
                
             }
@@ -69,7 +69,7 @@ namespace Core
                 gameLevel = Instantiate(backgroundLvl2, gameDirectory.transform);
                 gameScreen = screenController.ShowGameScreen();
                 gameScreen.Setup(OnQuitScreenAction);
-                activeGameZone.Setup(lvl2Chunks,OnWinScreenAction);
+                activeGameZone.Setup(lvl2Chunks,OnWinScreenAction,score);
                 activeGameZone.SpawnChunk();
             }
         }

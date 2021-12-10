@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     private Action onLoseScreenAction;
     private Score score;
     
-    public void Setup(Action onLoseScreenAction,Score score = null)
+    public void Setup( Score score = null, Action onLoseScreenAction = null)
     {
         this.onLoseScreenAction = onLoseScreenAction;
         this.score = score;
@@ -72,13 +72,11 @@ public class Health : MonoBehaviour
         if (gameObject.tag == "Character")
         {
             Time.timeScale = 0.3f;
-            // Time.fixedDeltaTime = Time.timeScale * 0.02f;
         }
       
         yield return new WaitForSeconds(0.5f);
         onLoseScreenAction?.Invoke();
         Time.timeScale = 1f;
-        //Time.fixedDeltaTime = Time.timeScale * 0.01f;
         Destroy(gameObject);
     }
 }

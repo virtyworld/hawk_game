@@ -184,6 +184,7 @@ MonoBehaviour:
   - {fileID: -522412734203255507, guid: 868fd3257fa46504dab389680a51cb4a, type: 3}
   - {fileID: 1384714636342550268, guid: ce92e8c3f7cedd440a1a673ddf965a8c, type: 3}
   bulletLauncher: {fileID: 7938577891858692001}
+  health: {fileID: 4894366526701802197}
 --- !u!114 &7938577891858692001
 MonoBehaviour:
   m_ObjectHideFlags: 0
