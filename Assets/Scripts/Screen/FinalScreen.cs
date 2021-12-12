@@ -55,13 +55,13 @@ public class FinalScreen : BaseScreen
     {
         isLose = true;
         title.text = "Game over";
-        description.text = "You lose./n Best score: "; 
+        description.text = "You lose.\n Current score: "+Score.Instance.CurrentScore+"\nBest score: "+Score.Instance.BestScore; 
     }
 
     public void WinGame()
     {
         isWin = true;
         title.text = "Game over";
-        description.text = "You win";  
+        description.text = "You win.\n Current score: "+Score.Instance.CurrentScore+"\nBest score: "+Score.Instance.BestScore; 
     }
 }

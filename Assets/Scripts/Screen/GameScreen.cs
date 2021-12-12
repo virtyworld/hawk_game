@@ -7,14 +7,12 @@ public class GameScreen : BaseScreen
 {
     [SerializeField] private Button finishButton;
     [SerializeField] private TextMeshProUGUI scoreText;
-
-    private Score score;
+    
     private Action finishButtonAction;
     
-    public void Setup(Action action,Score score = null)
+    public void Setup(Action action)
     {
         finishButtonAction = action;
-        this.score = score;
     }
     private void Start()
     {
@@ -23,7 +21,7 @@ public class GameScreen : BaseScreen
 
     private void FixedUpdate()
     {
-        scoreText.text = score.GetCurrentScore.ToString();
+        scoreText.text = Score.Instance.CurrentScore.ToString();
     }
 
     private void FinishClickButton()

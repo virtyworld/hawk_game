@@ -39,18 +39,27 @@ public class Health : MonoBehaviour
     {
         if (currentHealth > 0)
         {
-            currentHealth -= 20;
-            textHealth.text = currentHealth.ToString();
-            healthImage.fillAmount = currentHealth / 100;
-
             if (gameObject.tag == "Character")
             {
+                currentHealth -= 20;
                 score.PlayerHasDamage(collider.transform.parent.GetInstanceID());
             }
             else
             {
+                if (Score.Instance.IsBonus)
+                {
+                    currentHealth -= 40;
+                }
+                else
+                {
+                    currentHealth -= 20;
+                }
+                
                 score.EnemyHasDamage();
             }
+            
+            textHealth.text = currentHealth.ToString();
+            healthImage.fillAmount = currentHealth / 100;
         }
     }
 

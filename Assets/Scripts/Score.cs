@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -5,6 +6,8 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
+    private static Score instance;
+    
     [SerializeField] private float pointForKillEnemy;
     [SerializeField] private float pointForDamageEnemy;
     [SerializeField] private float pointForDamagePlayer;
@@ -15,10 +18,21 @@ public class Score : MonoBehaviour
     private List<int> enemiesHitPlayer = new List<int>();
     private string saveFile;
     private GameData gameData = new GameData();
-    
-    public float GetCurrentScore => currentScore;
+
+    public bool IsBonus => isBonus;
+    public static Score Instance => instance;
+    public float CurrentScore => currentScore;
     public float BestScore => currentScore > gameData.BestScore ? currentScore : gameData.BestScore;
-    
+
+    private void Awake()
+    {
+        if (instance == null) { 
+            instance = this; 
+        } else if(instance == this){ 
+            Destroy(gameObject); 
+        }
+    }
+
     private void Start()
     {
         saveFile = Application.persistentDataPath + "/gamedata.json";
