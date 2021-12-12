@@ -42,8 +42,7 @@ public class Health : MonoBehaviour
             currentHealth -= 20;
             textHealth.text = currentHealth.ToString();
             healthImage.fillAmount = currentHealth / 100;
-            //если умирает враг - проверка на то,попадал ли он в игрока
-            
+
             if (gameObject.tag == "Character")
             {
                 score.PlayerHasDamage(collider.transform.parent.GetInstanceID());
@@ -58,24 +57,23 @@ public class Health : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         TakeDamage(other);
+        Debug.Log("OnTriggerEnter ");
     }
 
     private IEnumerator Die()
     {
+        explosion.Play();
+        yield return new WaitForSeconds(0.5f);
+        
+        if (gameObject.tag == "Character")
+        {
+            Time.timeScale = 0.3f;
+            onLoseScreenAction?.Invoke();
+        }
         if (gameObject.tag != "Character")
         {
             score.KillEnemy(gameObject.GetInstanceID());
         }
-      
-        
-        explosion.Play();
-        if (gameObject.tag == "Character")
-        {
-            Time.timeScale = 0.3f;
-        }
-      
-        yield return new WaitForSeconds(0.5f);
-        onLoseScreenAction?.Invoke();
         Time.timeScale = 1f;
         Destroy(gameObject);
     }

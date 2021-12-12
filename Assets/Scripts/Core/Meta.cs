@@ -50,7 +50,7 @@ namespace Core
                 isStartGame = true;
                 score = Instantiate(scorePrefab);
                 playerScript = Instantiate(playerScriptPrefab,gameDirectory.transform);
-                playerScript.Setup(OnLoseScreenAction,score);
+                playerScript.Setup(score,OnLoseScreenAction);
                 gameLevel = Instantiate(backgroundLvl1, gameDirectory.transform);
                 gameScreen = screenController.ShowGameScreen();
                 gameScreen.Setup(OnQuitScreenAction,score);
@@ -65,7 +65,7 @@ namespace Core
             {
                 isStartGame = true;
                 playerScript = Instantiate(playerScriptPrefab,gameDirectory.transform);
-                playerScript.Setup(OnLoseScreenAction);
+                playerScript.Setup(score,OnLoseScreenAction);
                 gameLevel = Instantiate(backgroundLvl2, gameDirectory.transform);
                 gameScreen = screenController.ShowGameScreen();
                 gameScreen.Setup(OnQuitScreenAction);
@@ -95,6 +95,7 @@ namespace Core
                 finalScreen = screenController.ShowFinalScreen();
                 finalScreen.Setup(OnMainScreenAction);
                 finalScreen.LoseGame();
+                score.SaveScore();
                 if (playerScript) Destroy(playerScript.gameObject);
                 if (gameLevel) Destroy(gameLevel.gameObject);
             }
@@ -108,6 +109,7 @@ namespace Core
                 finalScreen = screenController.ShowFinalScreen();
                 finalScreen.Setup(OnMainScreenAction);
                 finalScreen.WinGame();
+                score.SaveScore();
                 if (playerScript) Destroy(playerScript.gameObject);
                 if (gameLevel) Destroy(gameLevel.gameObject);
             }

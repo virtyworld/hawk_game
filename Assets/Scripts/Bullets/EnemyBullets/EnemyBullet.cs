@@ -10,7 +10,7 @@ public class EnemyBullet : MonoBehaviour
     private void FixedUpdate()
     {
         BulletMove();
-        StartCoroutine(Destroy());
+        StartCoroutine(DestroyBullet());
     }
 
     private void BulletMove()
@@ -18,7 +18,7 @@ public class EnemyBullet : MonoBehaviour
         rigidbody.velocity = -transform.up * speed;
     }
     
-    IEnumerator Destroy()
+    IEnumerator DestroyBullet()
     {
         yield return new WaitForSeconds(bulletLifeTime);
         Destroy(gameObject);

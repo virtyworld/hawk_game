@@ -19,7 +19,7 @@ public class Character : MonoBehaviour
     private Action OnLoseScreenAction;
     private Score score;
 
-    public void Setup(Action OnLoseScreenAction,Score score = null)
+    public void Setup(Score score,Action OnLoseScreenAction)
     {
         this.OnLoseScreenAction = OnLoseScreenAction;
         this.score = score;

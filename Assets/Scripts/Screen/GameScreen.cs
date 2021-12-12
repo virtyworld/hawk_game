@@ -23,7 +23,7 @@ public class GameScreen : BaseScreen
 
     private void FixedUpdate()
     {
-        scoreText.text = score.GetScore.ToString();
+        scoreText.text = score.GetCurrentScore.ToString();
     }
 
     private void FinishClickButton()

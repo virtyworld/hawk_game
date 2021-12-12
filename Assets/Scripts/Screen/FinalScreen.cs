@@ -55,7 +55,7 @@ public class FinalScreen : BaseScreen
     {
         isLose = true;
         title.text = "Game over";
-        description.text = "You lose"; 
+        description.text = "You lose./n Best score: "; 
     }
 
     public void WinGame()

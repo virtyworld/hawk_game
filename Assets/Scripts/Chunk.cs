@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Chunk : MonoBehaviour
 {
-   [SerializeField] private List<Enemy> enemies;
+   [SerializeField] private List<Enemy> enemiesPrefab;
    [SerializeField] private List<Transform> spawnPositions;
 
    private Action OnNextChunkAction;
    private int screenSizeWidth;
    private int screenSizeHeight;
    private Score score;
-   public void Setup(Action OnNextChunkAction,Score score = null)
+   private List<Enemy> enemies = new List<Enemy>();
+   
+   public void Setup(Score score,Action OnNextChunkAction)
    {
       this.OnNextChunkAction = OnNextChunkAction;
       this.score = score;
@@ -34,6 +36,7 @@ public class Chunk : MonoBehaviour
    private bool IsEnemiesDie()
    {
       enemies.RemoveAll(x => x == null);
+      
       if (enemies.Count == 0)
       {
          return true;
@@ -51,12 +54,13 @@ public class Chunk : MonoBehaviour
       float width = orthographicSize * aspect/10;
       float height = orthographicSize * aspect/10;
 
-      for (int i = 0; i < enemies.Count; i++)
+      for (int i = 0; i < enemiesPrefab.Count; i++)
       {
-         Enemy enemy = Instantiate(enemies[i],spawnPositions[i]);
+         Enemy enemy = Instantiate(enemiesPrefab[i],spawnPositions[i]);
          enemy.gameObject.transform.position = new Vector3( spawnPositions[i].position.x*width,
             spawnPositions[i].position.y/height, 0);
          enemy.Setup(score);
+         enemies.Add(enemy);
       }
    }
 }

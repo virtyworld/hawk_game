@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ActiveGameZone : MonoBehaviour
 {
-    
     private int screenSizeWidth;
     private int screenSizeHeight;
     private Chunk[] chunks;
@@ -26,11 +25,9 @@ public class ActiveGameZone : MonoBehaviour
         OnNextChunkAction += GoToNextChunk;
         GetScreenSize();
     }
-
-    //TODO: del fixed update
+  
     private void FixedUpdate()
     {
-        GetScreenSize();
         MoveCamera();
     }
 
@@ -54,7 +51,7 @@ public class ActiveGameZone : MonoBehaviour
         if (IsThisLastChunk())
         {
             //show win screen
-            OnWinScreenAction?.Invoke();
+             OnWinScreenAction?.Invoke();
         }
         else
         {
@@ -93,7 +90,7 @@ public class ActiveGameZone : MonoBehaviour
         for (int i = 0; i < chunks.Length; i++)
         {
             Chunk chunk = Instantiate(chunks[i], transform);
-            chunk.Setup(OnNextChunkAction);
+            chunk.Setup(score,OnNextChunkAction);
             chunk.transform.position = new Vector3(0, orthographicSize * i, 0);
             characterListPosition.Add(chunk.transform.position);
         }
