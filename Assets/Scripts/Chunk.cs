@@ -56,7 +56,7 @@ public class Chunk : MonoBehaviour
 
       for (int i = 0; i < enemiesPrefab.Count; i++)
       {
-         Enemy enemy = Instantiate(enemiesPrefab[i],spawnPositions[i]);
+         Enemy enemy = Instantiate(enemiesPrefab[i],spawnPositions[i].parent);
          enemy.gameObject.transform.position = new Vector3( spawnPositions[i].position.x*width,
             spawnPositions[i].position.y/height, 0);
          enemy.Setup(score);

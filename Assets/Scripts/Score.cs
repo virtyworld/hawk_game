@@ -15,14 +15,14 @@ public class Score : MonoBehaviour
    
     private float currentScore;
     private bool isBonus;
-    private List<int> enemiesHitPlayer = new List<int>();
+    private HashSet<int> enemiesHitPlayer = new HashSet<int>();
     private string saveFile;
     private GameData gameData = new GameData();
 
     public bool IsBonus => isBonus;
     public static Score Instance => instance;
     public float CurrentScore => currentScore;
-    public float BestScore => currentScore > gameData.BestScore ? currentScore : gameData.BestScore;
+    public float BestScore => currentScore > gameData.bestScore ? currentScore : gameData.bestScore;
 
     private void Awake()
     {
@@ -45,15 +45,12 @@ public class Score : MonoBehaviour
         {
             StartCoroutine(Bonus());
         }
-        Debug.Log("KillEnemy "+isBonus + " "+currentScore+" "+currentScore + " "+pointForKillEnemy*bonus);
         currentScore += isBonus ? pointForKillEnemy*bonus : pointForKillEnemy;
-       
     }
    
     public void EnemyHasDamage()
     {
         currentScore += isBonus ? pointForDamageEnemy*bonus : pointForDamageEnemy;
-        Debug.Log("EnemyHasDamage "+isBonus + " "+pointForDamageEnemy+" "+bonus);
     }
 
     public void PlayerHasDamage(int instanceId)
@@ -76,7 +73,7 @@ public class Score : MonoBehaviour
 
     public void SaveScore()
     {
-        if (currentScore > gameData.BestScore)
+        if (currentScore > gameData.bestScore)
         {
             WriteFile();
         }
@@ -94,8 +91,8 @@ public class Score : MonoBehaviour
     private void WriteFile()
     {
         GameData gd = new GameData();
-        gd.Setup(currentScore);
-        string jsonString = JsonUtility.ToJson(gameData);
+        gd.bestScore = currentScore;
+        string jsonString = JsonUtility.ToJson(gd);
         File.WriteAllText(saveFile, jsonString);
     }
 }

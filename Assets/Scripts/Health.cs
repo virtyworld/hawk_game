@@ -66,7 +66,6 @@ public class Health : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         TakeDamage(other);
-        Debug.Log("OnTriggerEnter ");
     }
 
     private IEnumerator Die()
@@ -81,7 +80,7 @@ public class Health : MonoBehaviour
         }
         if (gameObject.tag != "Character")
         {
-            score.KillEnemy(gameObject.GetInstanceID());
+            score.KillEnemy(transform.parent.GetInstanceID());
         }
         Time.timeScale = 1f;
         Destroy(gameObject);
