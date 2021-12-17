@@ -35,7 +35,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void TakeDamage(Collider collider)
+    private void TakeDamage(Collision collider)
     {
         if (currentHealth > 0)
         {
@@ -63,7 +63,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         TakeDamage(other);
     }

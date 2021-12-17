@@ -23,7 +23,7 @@ public class ActiveGameZone : MonoBehaviour
     void Start()
     {
         OnNextChunkAction += GoToNextChunk;
-        GetScreenSize();
+        
     }
   
     private void FixedUpdate()
@@ -31,27 +31,11 @@ public class ActiveGameZone : MonoBehaviour
         MoveCamera();
     }
 
-    private void GetScreenSize()
-    {
-        //TODO: del if
-        if (screenSizeWidth != UnityEngine.Screen.width || screenSizeHeight!= UnityEngine.Screen.height)
-        {
-            float aspect = (float)UnityEngine.Screen.width / UnityEngine.Screen.height;
-            float orthographicSize = Camera.main.orthographicSize * 2.0f;
-            float width = orthographicSize * aspect/10;
-            float height = orthographicSize * aspect/10;
-            transform.localScale = new Vector3(width, height, 1);
-            screenSizeWidth = UnityEngine.Screen.width;
-            screenSizeHeight = UnityEngine.Screen.height;
-        }
-    }
-
     private void MoveCamera()
     {
         if (IsThisLastChunk())
         {
-            //show win screen
-             OnWinScreenAction?.Invoke();
+            OnWinScreenAction?.Invoke();
         }
         else
         {
@@ -92,9 +76,11 @@ public class ActiveGameZone : MonoBehaviour
             Chunk chunk = Instantiate(chunks[i], transform);
             chunk.Setup(score,OnNextChunkAction);
             chunk.transform.position = new Vector3(0, orthographicSize * i, 0);
+            float scale = Scailing.Instance.GetScale;
+            chunk.transform.localScale = new Vector3(scale,scale,1);
             characterListPosition.Add(chunk.transform.position);
         }
-          
+       
     }
 
 }
