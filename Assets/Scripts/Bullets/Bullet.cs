@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -32,8 +31,15 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        if (gameObject.layer == 10)
+        {
+            if (transform.parent.parent.name != other.name)
+            {
+                Destroy(gameObject);
+            }  
+        }
+      
     }
 }

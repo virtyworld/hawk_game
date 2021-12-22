@@ -51,10 +51,10 @@ namespace Core
                 score = Instantiate(scorePrefab,gameDirectory.transform);
                 playerScript = Instantiate(playerScriptPrefab,gameDirectory.transform);
                 playerScript.Setup(score,OnLoseScreenAction);
-                gameLevel = Instantiate(backgroundLvl1, gameDirectory.transform);
+                gameLevel = Instantiate(backgroundLvl1, gameDirectory.transform.parent);
                 gameScreen = screenController.ShowGameScreen();
                 gameScreen.Setup(OnQuitScreenAction);
-                activeGameZone.Setup(lvl1Chunks,OnWinScreenAction,score);
+                activeGameZone.Setup(lvl1Chunks,OnWinScreenAction,playerScript);
                 activeGameZone.SpawnChunk();
                
             }
@@ -64,12 +64,13 @@ namespace Core
             if (!isStartGame)
             {
                 isStartGame = true;
+                score = Instantiate(scorePrefab,gameDirectory.transform);
                 playerScript = Instantiate(playerScriptPrefab,gameDirectory.transform);
                 playerScript.Setup(score,OnLoseScreenAction);
-                gameLevel = Instantiate(backgroundLvl2, gameDirectory.transform);
+                gameLevel = Instantiate(backgroundLvl2, gameDirectory.transform.parent);
                 gameScreen = screenController.ShowGameScreen();
                 gameScreen.Setup(OnQuitScreenAction);
-                activeGameZone.Setup(lvl2Chunks,OnWinScreenAction,score);
+                activeGameZone.Setup(lvl2Chunks,OnWinScreenAction,playerScript);
                 activeGameZone.SpawnChunk();
             }
         }
@@ -83,8 +84,6 @@ namespace Core
                 finalScreen.Setup(OnMainScreenAction);
                 finalScreen.QuitGame();
                 DeleteAllChild();
-                // if (playerScript) Destroy(playerScript.gameObject);
-                // if (gameLevel) Destroy(gameLevel.gameObject);
             }
         }
         
@@ -98,8 +97,6 @@ namespace Core
                 finalScreen.LoseGame();
                 score.SaveScore();
                 DeleteAllChild();
-                // if (playerScript) Destroy(playerScript.gameObject);
-                // if (gameLevel) Destroy(gameLevel.gameObject);
             }
         }
         
@@ -113,8 +110,6 @@ namespace Core
                 finalScreen.WinGame();
                 score.SaveScore();
                 DeleteAllChild();
-                // if (playerScript) Destroy(playerScript.gameObject);
-                // if (gameLevel) Destroy(gameLevel.gameObject);
             }
         }
 

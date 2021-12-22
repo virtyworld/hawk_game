@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class Character : MonoBehaviour
 {
@@ -18,6 +17,7 @@ public class Character : MonoBehaviour
     private Vector3 oldCursorPos;
     private Action OnLoseScreenAction;
     private Score score;
+    private bool isPause;
 
     public void Setup(Score score,Action OnLoseScreenAction)
     {
@@ -27,13 +27,7 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        health.Setup(score,OnLoseScreenAction);
-        
-        float scale = Scailing.Instance.GetScale;
-        transform.localScale = new Vector3(scale,scale,scale);
-        Bounds b = new Bounds();
-        b.size = new Vector3(10, 10, 10);
-        
+        health.Setup(OnLoseScreenAction);
     }
 
     private void FixedUpdate()
@@ -81,16 +75,16 @@ public class Character : MonoBehaviour
         }
         if (transform.position.y > verticalSize/2)
         {
-            transform.position = new Vector3(transform.position.x, -verticalSize/2, 0);
+            transform.position = new Vector3(transform.position.x, verticalSize/2, 0);
         }
     }
   
     private void Shoot()
     {
-        if (currentTime == 0)
+        if (currentTime == 0 && bulletCount > 0 && !isPause)
         {
             isShoot = true;
-            bulletLauncher.Shoot(bulletPrefabs[Random.Range(0,bulletPrefabs.Length)],bulletCount);
+            bulletLauncher.Shoot();
         }
 
         if (isShoot && currentTime < fireRate)
@@ -105,22 +99,12 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    public void StartPause()
     {
-        // if (transform.position.x < xMovementClamp || transform.position.x > xMovementClamp)
-        // {
-        //     // transform.position = Vector3.Lerp(transform.position, bounds, Time.deltaTime * moveSpeed);
-        //     transform.position = new Vector3(xMovementClamp, transform.position.y, 0);
-        //     oldCharacterPos = transform.position;
-        //  
-        // }
-        //
-        // if (transform.position.y < yMovementClamp || transform.position.y > yMovementClamp)
-        // {
-        //     //transform.position = Vector3.Lerp(transform.position, bounds, Time.deltaTime * moveSpeed);
-        //     transform.position = new Vector3(transform.position.x, yMovementClamp, 0);
-        //     oldCharacterPos = transform.position;
-        //     
-        // }
+        isPause = true;
+    }
+    public void StopPause()
+    {
+        isPause = false;
     }
 }

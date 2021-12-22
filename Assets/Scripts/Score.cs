@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -15,9 +14,11 @@ public class Score : MonoBehaviour
    
     private float currentScore;
     private bool isBonus;
+    private bool isPause;
     private HashSet<int> enemiesHitPlayer = new HashSet<int>();
     private string saveFile;
     private GameData gameData = new GameData();
+    private Coroutine bonusCoroutine;
 
     public bool IsBonus => isBonus;
     public static Score Instance => instance;
@@ -43,7 +44,7 @@ public class Score : MonoBehaviour
     {
         if (!IsEnemyHitPlayer(instanceId))
         {
-            StartCoroutine(Bonus());
+            bonusCoroutine =  StartCoroutine(Bonus());
         }
         currentScore += isBonus ? pointForKillEnemy*bonus : pointForKillEnemy;
     }
@@ -94,5 +95,16 @@ public class Score : MonoBehaviour
         gd.bestScore = currentScore;
         string jsonString = JsonUtility.ToJson(gd);
         File.WriteAllText(saveFile, jsonString);
+    }
+
+    public void PauseOn()
+    {
+        isPause = true;
+        StopCoroutine(bonusCoroutine);
+    }
+    public void PauseOff()
+    {
+        isPause = false;
+        StartCoroutine(Bonus());
     }
 }

@@ -315,6 +315,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chunk4
       objectReference: {fileID: 0}
+    - target: {fileID: 1478791622143313844, guid: 5af7ebacb45036a4c9ca6d3188cbdf5c, type: 3}
+      propertyPath: m_TagString
+      value: chunk4
+      objectReference: {fileID: 0}
     - target: {fileID: 1478791622143313845, guid: 5af7ebacb45036a4c9ca6d3188cbdf5c, type: 3}
       propertyPath: m_RootOrder
       value: 0

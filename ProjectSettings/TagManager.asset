@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Character
+  - chunk1
+  - chunk2
+  - chunk3
+  - chunk4
   layers:
   - Default
   - TransparentFX

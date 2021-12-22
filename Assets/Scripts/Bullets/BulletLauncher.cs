@@ -7,12 +7,14 @@ public class BulletLauncher : BaseLauncher
     [SerializeField] protected float bulletLifeTime;
     [SerializeField] protected BulletDirection directions;
     [SerializeField] protected float angle;
+    [SerializeField] private float bulletCount;
+    [SerializeField] private Bullet[] bulletPrefabs;
 
-    public void Shoot(Bullet bulletPrefab,float bulletCount)
+    public void Shoot()
     {
         for (int i = 1; i < bulletCount+1; i++)
         {
-            Bullet bullet = Instantiate(bulletPrefab,new Vector3(transform.position.x, transform.position.y,transform.position.z), Quaternion.identity,transform.parent);
+            Bullet bullet = Instantiate(bulletPrefabs[Random.Range(0,bulletPrefabs.Length)],new Vector3(transform.position.x, transform.position.y,transform.position.z), Quaternion.identity,transform.parent);
             bullet.Setup(speed,bulletLifeTime);
             bullet.gameObject.transform.Rotate(new Vector3(0f,0f,GetAngle(directions,bulletCount,i)));
         }

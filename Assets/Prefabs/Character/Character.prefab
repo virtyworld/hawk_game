@@ -563,10 +563,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0f00905ebbf2449be52fcb1e32b81a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 3
   bulletLifeTime: 3
   directions: 0
   angle: 0
+  bulletCount: 1
+  bulletPrefabs:
+  - {fileID: 7138998392144842554, guid: 16fb8edda7c7eeb4486ca95feccf994b, type: 3}
+  - {fileID: 354937656187901799, guid: 07e60692d2bacad468ca1e4a0ea04d5c, type: 3}
 --- !u!198 &3966613230677093907
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5588,7 +5592,7 @@ BoxCollider:
   m_GameObject: {fileID: 6087441777651552235}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

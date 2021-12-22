@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,12 +13,10 @@ public class Health : MonoBehaviour
     [SerializeField] private ParticleSystem explosion;
 
     private Action onLoseScreenAction;
-    private Score score;
-    
-    public void Setup( Score score = null, Action onLoseScreenAction = null)
+
+    public void Setup(Action onLoseScreenAction = null)
     {
         this.onLoseScreenAction = onLoseScreenAction;
-        this.score = score;
     }
     void Start()
     {
@@ -39,10 +36,11 @@ public class Health : MonoBehaviour
     {
         if (currentHealth > 0)
         {
+            
             if (gameObject.tag == "Character")
             {
                 currentHealth -= 20;
-                score.PlayerHasDamage(collider.transform.parent.GetInstanceID());
+                Score.Instance.PlayerHasDamage(collider.transform.parent.GetInstanceID());
             }
             else
             {
@@ -55,7 +53,7 @@ public class Health : MonoBehaviour
                     currentHealth -= 20;
                 }
                 
-                score.EnemyHasDamage();
+                Score.Instance.EnemyHasDamage();
             }
             
             textHealth.text = currentHealth.ToString();
@@ -66,6 +64,7 @@ public class Health : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         TakeDamage(other);
+        Destroy(other.gameObject);
     }
 
     private IEnumerator Die()
@@ -80,7 +79,7 @@ public class Health : MonoBehaviour
         }
         if (gameObject.tag != "Character")
         {
-            score.KillEnemy(transform.parent.GetInstanceID());
+            Score.Instance.KillEnemy(transform.parent.GetInstanceID());
         }
         Time.timeScale = 1f;
         Destroy(gameObject);

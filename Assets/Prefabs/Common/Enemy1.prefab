@@ -148,7 +148,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &1884809117031686533
 BoxCollider:
@@ -192,13 +192,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344497925605e1c4485d1aad33cb90c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
-  bulletCount: 2
-  bulletPrefabs:
-  - {fileID: -522412734203255507, guid: 868fd3257fa46504dab389680a51cb4a, type: 3}
-  - {fileID: 1384714636342550268, guid: ce92e8c3f7cedd440a1a673ddf965a8c, type: 3}
   bulletLauncher: {fileID: 7938577891858692001}
   health: {fileID: 4894366526701802197}
+  fireRate: 1
 --- !u!114 &7938577891858692001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +211,10 @@ MonoBehaviour:
   bulletLifeTime: 3
   directions: 1
   angle: 45
+  bulletCount: 1
+  bulletPrefabs:
+  - {fileID: -522412734203255507, guid: 868fd3257fa46504dab389680a51cb4a, type: 3}
+  - {fileID: 1384714636342550268, guid: ce92e8c3f7cedd440a1a673ddf965a8c, type: 3}
 --- !u!199 &638193894242601203
 ParticleSystemRenderer:
   serializedVersion: 6

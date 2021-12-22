@@ -59,5 +59,21 @@ PrefabInstance:
       propertyPath: angle
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 7938577891858692001, guid: 050e78fd35a57e4459627e267e368fe9, type: 3}
+      propertyPath: bulletCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7938577891858692001, guid: 050e78fd35a57e4459627e267e368fe9, type: 3}
+      propertyPath: bulletPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7938577891858692001, guid: 050e78fd35a57e4459627e267e368fe9, type: 3}
+      propertyPath: bulletPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: -522412734203255507, guid: 868fd3257fa46504dab389680a51cb4a, type: 3}
+    - target: {fileID: 7938577891858692001, guid: 050e78fd35a57e4459627e267e368fe9, type: 3}
+      propertyPath: bulletPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1384714636342550268, guid: ce92e8c3f7cedd440a1a673ddf965a8c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 050e78fd35a57e4459627e267e368fe9, type: 3}

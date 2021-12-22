@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,19 +12,21 @@ public class ActiveGameZone : MonoBehaviour
     private Action OnWinScreenAction;
     private Chunk cnank;
     private List<Vector3> characterListPosition = new List<Vector3>();
-    private Score score;
     private int currentChunk;
-    
-    public void Setup(Chunk[] chunks,Action  OnWinScreenAction,Score score = null)
+    private Character character;
+
+    public void Setup(Chunk[] chunks, Action OnWinScreenAction,Character character = null)
     {
         this.chunks = chunks;
         this.OnWinScreenAction = OnWinScreenAction;
-        this.score = score;
+        this.character = character;
     }
     void Start()
     {
         OnNextChunkAction += GoToNextChunk;
-        
+       
+        float scale = (float)UnityEngine.Screen.width / UnityEngine.Screen.height;
+        transform.localScale = new Vector3(scale,scale,scale);
     }
   
     private void FixedUpdate()
@@ -43,7 +46,7 @@ public class ActiveGameZone : MonoBehaviour
             {
                 if (transform.position != characterListPosition[currentChunk] )
                 {
-                    Vector3 pos = new Vector3(characterListPosition[currentChunk].x,-characterListPosition[currentChunk].y,0);
+                    Vector3 pos = new Vector3(characterListPosition[currentChunk].x,-characterListPosition[currentChunk].y,transform.position.z);
                     transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * 1);
                 }  
             }
@@ -51,10 +54,10 @@ public class ActiveGameZone : MonoBehaviour
     }
     private void GoToNextChunk()
     {
-        //TODO:move character
-        //character.transform.position += new Vector3(characterListPosition[currentChunk].x,characterListPosition[currentChunk].y,0);
-
+        character.StartPause();
+        StartCoroutine(NextChunk());
         currentChunk += 1;
+        character.StopPause();
     }
 
     private bool IsThisLastChunk()
@@ -68,19 +71,24 @@ public class ActiveGameZone : MonoBehaviour
     
     public void SpawnChunk()
     {
-        //TODO:spawn chunk
         float orthographicSize = Camera.main.orthographicSize * 2.0f;
           
         for (int i = 0; i < chunks.Length; i++)
         {
             Chunk chunk = Instantiate(chunks[i], transform);
-            chunk.Setup(score,OnNextChunkAction);
+            chunk.Setup(OnNextChunkAction);
             chunk.transform.position = new Vector3(0, orthographicSize * i, 0);
-            float scale = Scailing.Instance.GetScale;
-            chunk.transform.localScale = new Vector3(scale,scale,1);
             characterListPosition.Add(chunk.transform.position);
         }
        
     }
 
+    private IEnumerator NextChunk()
+    {
+        Score.Instance.PauseOn();
+        Physics.autoSimulation = false;
+        yield return new WaitForSeconds(3);
+        Physics.autoSimulation = true;
+        Score.Instance.PauseOff();
+    }
 }
